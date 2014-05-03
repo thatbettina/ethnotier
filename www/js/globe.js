@@ -12,7 +12,7 @@ function Globe() {
 Globe.prototype = {
 	// -------------------------------------------------------------------------
 	create: function() {
-		$( '#mapContainer').append( '<div id="globe"></div>');
+		$( '#mapContainer').append( '<div id="globe">globe</div>');
 		this.obj = $( '#globe');
 	},
 	// -------------------------------------------------------------------------

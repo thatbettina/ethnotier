@@ -11,6 +11,8 @@ $( document).on( "pagecreate", "#pageMap", function()
 $( document).on( "pageshow", "#pageMap", function()
 {
 	var globe = new Globe;
+	var orchestra = new Orchestra;
+	var instrument = new Instrument;
 });
 
 // -----------------------------------------------------------------------------

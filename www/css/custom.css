@@ -46,6 +46,42 @@ body {
 	-moz-user-select:none;
 	-ms-user-select:none;
 	user-select:none;
+	text-align:center;
+}
+
+#orchestra {
+	background-color:#b96;
+	width:100%;
+	height:300px;
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	text-align:center;
+}
+
+#orchestra.over{
+	background-color:#b90;
+}
+
+#instrument {
+	background-color:#c66;
+	width:100px;
+	height:100px;
+	position:absolute;
+	top:200px;
+	left:200px;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	text-align:center;
+	cursor:move;
 }
 
 /* end */
