@@ -37,7 +37,8 @@ Orchestra.prototype = {
 			if( event.stopPropagation) {
 				event.stopPropagation();
 			}
-			this.innerHTML = event.dataTransfer.getData( 'text/html');
+			this.classList.remove( 'over');
+			this.innerHTML = event.originalEvent.dataTransfer.getData( 'text/html');
 			return false;
 		});
 	},

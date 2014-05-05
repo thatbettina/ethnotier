@@ -17,7 +17,7 @@ Instrument.prototype = {
 
 		this.obj.on( 'dragstart', function( event) {
 			event.originalEvent.dataTransfer.setData( 'text/html', 'http://species-id.net/o/media/e/e9/Aquila_chrysaetos_TSA-short.mp3');
-			this.style.opacity = '0.4';
+			this.style.opacity = '0.6';
 //			event.dataTransfer.effectAllowed = 'move';
 		});
 	},
