@@ -4,6 +4,7 @@
 
 $( document).on( "pagecreate", "#pageMap", function()
 {
+	$( document).bind( 'touchmove', false);
 });
 
 // -----------------------------------------------------------------------------
