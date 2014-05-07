@@ -20,6 +20,27 @@ Instrument.prototype = {
 			this.style.opacity = '0.6';
 //			event.dataTransfer.effectAllowed = 'move';
 		});
+
+		// to do: remove drag events and switch to touch and mouse events
+		// (iPad have no drag events)
+
+		this.obj.on( 'touchstart', function( event) {
+			event.preventDefault();
+			this.style.opacity = '0.6';
+		});
+		this.obj.on( 'touchmove', function( event) {
+			event.preventDefault();
+			var touch = event.originalEvent.touches[0];
+//			alert( touch.pageX + " - " + touch.pageY);
+		});
+		this.obj.on( 'touchend', function( event) {
+			if( event.stopPropagation) {
+				event.stopPropagation();
+			}
+			this.style.opacity = '1';
+			var sound = new Sound;
+			sound.play( "GoldenEagle");
+		});
 	},
 	// -------------------------------------------------------------------------
 }
