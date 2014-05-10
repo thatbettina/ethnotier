@@ -43,25 +43,40 @@ Orchestra.prototype = {
 		if( max > 100) {
 			pos = -1;
 		}
+		if(( -1 == pos) && (center.y < $( this.obj).position().top)) {
+			pos = this.seats.length;
+		}
 
 		if( this.collisionSeat != pos) {
-			if( this.collisionSeat > -1) {
+			if(( -1 < this.collisionSeat) && (this.collisionSeat < this.seats.length)) {
 				$(this.seats[ this.collisionSeat].obj).removeClass( 'over');
 			}
 			this.collisionSeat = pos;
-			if( this.collisionSeat > -1) {
+			if(( -1 < this.collisionSeat) && (this.collisionSeat < this.seats.length)) {
 				$(this.seats[ this.collisionSeat].obj).addClass( 'over');
 			}
 		}
 	},
 	// -------------------------------------------------------------------------
 	endCollisionSeat: function( instrument) {
-		if( this.collisionSeat > -1) {
-			var seat = this.collisionSeat;
+		if(( this.collisionSeat > -1) && (this.collisionSeat == instrument.seat)) {
+			$(this.seats[ this.collisionSeat].obj).removeClass( 'over');
+			this.collisionSeat = -1;
+		}
+
+		if( this.collisionSeat == -1) {
+			instrument.moveToDragStart();
+		} else if( this.collisionSeat == this.seats.length) {
+			instrument.seat = -1;
 			this.collisionSeat = -1;
 
-			$(this.seats[ seat].obj).removeClass( 'over');
-			instrument.moveTo( this.seats[ seat].center);
+			instrument.moveToGlobe();
+		} else {
+			instrument.seat = this.collisionSeat;
+			this.collisionSeat = -1;
+
+			$(this.seats[ instrument.seat].obj).removeClass( 'over');
+			instrument.moveTo( this.seats[ instrument.seat].center);
 
 			this.sound.play( 'GoldenEagle');
 		}

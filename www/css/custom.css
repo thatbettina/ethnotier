@@ -68,11 +68,11 @@ body {
 #instrument {
 	background-color:#c66;
 	width:90px;
-	height:90px;
-	border-radius:20px;
+	height:60px;
+	border-radius:10px;
 	position:absolute;
-	top:200px;
-	left:200px;
+	top:220px;
+	left:205px;
 	-webkit-user-select:none;
 	-khtml-user-select:none;
 	-moz-user-select:none;

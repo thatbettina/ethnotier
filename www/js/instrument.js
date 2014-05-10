@@ -5,6 +5,7 @@
 function Instrument( orchestra) {
 	this.obj = $( '#instrument');
 	this.orchestra = orchestra;
+	this.seat = -1;
 
 	if( 0 == this.obj.length) {
 		this.create();
@@ -72,7 +73,7 @@ Instrument.prototype = {
 	dragStartFunc: function( event) {
 		this.draggingStart = $( this.obj).position();
 
-		$( this.obj).css({ opacity: '0.8', position: 'absolute', left: this.draggingStart.left, top: this.draggingStart.top });
+		$( this.obj).css({ opacity: '0.8' });
 	},
 	// -------------------------------------------------------------------------
 	dragMoveFunc: function( event) {
@@ -98,6 +99,17 @@ Instrument.prototype = {
 		var y = centerPos.y - parseInt( this.obj.outerHeight( true) / 2);
 
 		$( this.obj).css({ left: x, top: y});
+	},
+	// -------------------------------------------------------------------------
+	moveToDragStart: function() {
+		var x = this.draggingStart.left;
+		var y = this.draggingStart.top;
+
+		$( this.obj).css({ left: x, top: y});
+	},
+	// -------------------------------------------------------------------------
+	moveToGlobe: function() {
+		this.moveTo({ x: 250, y: 250 });
 	},
 	// -------------------------------------------------------------------------
 }
