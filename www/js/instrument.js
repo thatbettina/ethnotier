@@ -2,8 +2,9 @@
 /* instrument.js */
 // -----------------------------------------------------------------------------
 
-function Instrument() {
+function Instrument( orchestra) {
 	this.obj = $( '#instrument');
+	this.orchestra = orchestra;
 
 	if( 0 == this.obj.length) {
 		this.create();
@@ -75,14 +76,28 @@ Instrument.prototype = {
 	},
 	// -------------------------------------------------------------------------
 	dragMoveFunc: function( event) {
-		$( this.obj).css({ left: this.draggingStart.left + this.dragMouseDiff.x, top: this.draggingStart.top  + this.dragMouseDiff.y});
+		var posX = this.draggingStart.left + this.dragMouseDiff.x;
+		var posY = this.draggingStart.top + this.dragMouseDiff.y;
+
+		$( this.obj).css({ left: posX, top: posY});
+
+		posX += parseInt( this.obj.outerWidth( true) / 2);
+		posY += parseInt( this.obj.outerHeight( true) / 2);
+
+		this.orchestra.showCollisionSeat({ x: posX, y: posY });
 	},
 	// -------------------------------------------------------------------------
 	dragEndFunc: function( event) {
 		$( this.obj).css({ opacity: '1'});
 
-		var sound = new Sound;
-		sound.play( 'GoldenEagle');
+		this.orchestra.endCollisionSeat( this);
+	},
+	// -------------------------------------------------------------------------
+	moveTo: function( centerPos) {
+		var x = centerPos.x - parseInt( this.obj.outerWidth( true) / 2);
+		var y = centerPos.y - parseInt( this.obj.outerHeight( true) / 2);
+
+		$( this.obj).css({ left: x, top: y});
 	},
 	// -------------------------------------------------------------------------
 }

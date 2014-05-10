@@ -53,7 +53,7 @@ body {
 #orchestra {
 	background-color:#b96;
 	width:100%;
-	height:300px;
+	height:240px;
 	position:absolute;
 	bottom:0px;
 	left:0px;
@@ -65,14 +65,11 @@ body {
 	text-align:center;
 }
 
-#orchestra.over{
-	background-color:#b90;
-}
-
 #instrument {
 	background-color:#c66;
-	width:100px;
-	height:100px;
+	width:90px;
+	height:90px;
+	border-radius:20px;
 	position:absolute;
 	top:200px;
 	left:200px;
@@ -82,7 +79,23 @@ body {
 	-ms-user-select:none;
 	user-select:none;
 	text-align:center;
-	cursor:move;
+}
+
+.seat {
+	background-color:rgba(255,255,255,0.5);
+	width:100px;
+	height:100px;
+	position:absolute;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	text-align:center;
+}
+
+.seat.over{
+	background-color:rgba(255,255,255,0.9);
 }
 
 /* end */
