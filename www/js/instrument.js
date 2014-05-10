@@ -2,8 +2,9 @@
 /* instrument.js */
 // -----------------------------------------------------------------------------
 
-function Instrument( orchestra) {
-	this.obj = $( '#instrument');
+function Instrument( id, orchestra) {
+	this.id = id;
+	this.obj = $( '#instrument' + this.id);
 	this.orchestra = orchestra;
 	this.seat = -1;
 
@@ -14,8 +15,8 @@ function Instrument( orchestra) {
 Instrument.prototype = {
 	// -------------------------------------------------------------------------
 	create: function() {
-		$( '#mapContainer').append( '<div id="instrument">instrument</div><audio id="GoldenEagle" src="http://species-id.net/o/media/e/e9/Aquila_chrysaetos_TSA-short.mp3" preload="auto"></audio>');
-		this.obj = $( '#instrument');
+		$( '#mapContainer').append( '<div id="instrument' + this.id + '" class="instrument">instrument</div><audio id="GoldenEagle" src="http://species-id.net/o/media/e/e9/Aquila_chrysaetos_TSA-short.mp3" preload="auto"></audio>');
+		this.obj = $( '#instrument' + this.id);
 
 		var obj = this;
 

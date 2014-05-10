@@ -65,7 +65,7 @@ body {
 	text-align:center;
 }
 
-#instrument {
+.instrument {
 	background-color:#c66;
 	width:90px;
 	height:60px;
