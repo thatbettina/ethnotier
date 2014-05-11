@@ -78,7 +78,13 @@ Orchestra.prototype = {
 			$(this.seats[ instrument.seat].obj).removeClass( 'over');
 			instrument.moveTo( this.seats[ instrument.seat].center);
 
-			this.sound.play( 'GoldenEagle');
+			if( instrument.id == 0) {
+				this.sound.play( 'GoldenEagle');
+			} else if( instrument.id == 1) {
+				this.sound.play( 'Wolf');
+			} else {
+				this.sound.play( 'FallowDeer');
+			}
 		}
 	},
 	// -------------------------------------------------------------------------

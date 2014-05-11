@@ -15,7 +15,7 @@ function Instrument( id, orchestra) {
 Instrument.prototype = {
 	// -------------------------------------------------------------------------
 	create: function() {
-		$( '#mapContainer').append( '<div id="instrument' + this.id + '" class="instrument">instrument</div><audio id="GoldenEagle" src="http://species-id.net/o/media/e/e9/Aquila_chrysaetos_TSA-short.mp3" preload="auto"></audio>');
+		$( '#mapContainer').append( '<div id="instrument' + this.id + '" class="instrument">instrument</div>');
 		this.obj = $( '#instrument' + this.id);
 
 		var obj = this;
