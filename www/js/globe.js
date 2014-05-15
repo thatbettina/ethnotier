@@ -28,22 +28,15 @@ Globe.prototype = {
 	preloadResources: function() {
 		this.sound = new Sound;
 		this.orchestra = new Orchestra( this.sound);
+		this.cabinet = new Cabinet();
 
 		this.showMenuInstrument();
 	},
 	// -------------------------------------------------------------------------
 	showMenuInstrument: function() {
-		for( var i = 0; i < 3; ++i) {
-			var instrument = new Instrument( i, this.orchestra);
-			$( instrument.obj).css({ left: 100 * i + 105, top: 220});
-
-			if( i == 0) {
-				$( instrument.obj).html( 'Eagle');
-			} else if( i == 1) {
-				$( instrument.obj).html( 'Wolf');
-			} else {
-				$( instrument.obj).html( 'Deer');
-			}
+		for( var i = 0; i < this.cabinet.instruments.length; ++i) {
+			var instrument = new Instrument( this.cabinet.instruments[i].name, this.orchestra);
+			$( instrument.obj).css({ left: 100 * i + 5, top: 220});
 		}
 	},
 	// -------------------------------------------------------------------------

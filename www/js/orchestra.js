@@ -19,7 +19,7 @@ Orchestra.prototype = {
 		this.obj = $( '#orchestra');
 
 		for( var i = 0; i < 4; ++i) {
-			$( '#mapContainer').append( '<div id="seat' + i + '" class="seat" style="left:' + (i*120+60) +'px;bottom:60px;">Seat ' + (i + 1) + '</div>');
+			$( '#mapContainer').append( '<div id="seat' + i + '" class="seat" style="left:' + (i*120+60) +'px;bottom:60px;">seat</div>');
 			this.seats[ i] = { obj: $( '#seat' + i) };
 
 			var pos = $( this.seats[ i].obj).position();
@@ -78,13 +78,7 @@ Orchestra.prototype = {
 			$(this.seats[ instrument.seat].obj).removeClass( 'over');
 			instrument.moveTo( this.seats[ instrument.seat].center);
 
-			if( instrument.id == 0) {
-				this.sound.play( 'GoldenEagle');
-			} else if( instrument.id == 1) {
-				this.sound.play( 'Wolf');
-			} else {
-				this.sound.play( 'FallowDeer');
-			}
+			this.sound.play( instrument.name);
 		}
 	},
 	// -------------------------------------------------------------------------
