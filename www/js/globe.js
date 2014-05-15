@@ -27,17 +27,80 @@ Globe.prototype = {
 	// -------------------------------------------------------------------------
 	preloadResources: function() {
 		this.sound = new Sound;
-		this.orchestra = new Orchestra( this.sound);
+		this.orchestra = new Orchestra( this);
 		this.cabinet = new Cabinet();
+
+		this.slotMenu = [];
 
 		this.showMenuInstrument();
 	},
 	// -------------------------------------------------------------------------
 	showMenuInstrument: function() {
 		for( var i = 0; i < this.cabinet.instruments.length; ++i) {
-			var instrument = new Instrument( this.cabinet.instruments[i].name, this.orchestra);
-			$( instrument.obj).css({ left: 100 * i + 5, top: 220});
+			this.slotMenu.push( new Instrument( this.cabinet.instruments[i].name, this.orchestra));
 		}
+
+		this.sortMenuInstrument();
+	},
+	// -------------------------------------------------------------------------
+	sortMenuInstrument: function() {
+		for( var i = 0; i < this.slotMenu.length; ++i) {
+			this.slotMenu[i].moveTo({ x: 100 * i + 50, y: 250});
+		}
+	},
+	// -------------------------------------------------------------------------
+	moveInstrumentToGlobe: function( instrument) {
+		if( -1 == instrument.seat) {
+			instrument.moveToDragStart();
+			return;
+		}
+		if( null == this.orchestra.seats[ instrument.seat].instrument) {
+			instrument.moveToDragStart();
+			return;
+		}
+		if( instrument.name == this.orchestra.seats[ instrument.seat].name) {
+			instrument.moveToDragStart();
+			return;
+		}
+
+		this.orchestra.seats[ instrument.seat].instrument = null;
+		instrument.seat = -1;
+
+		this.slotMenu.push( instrument);
+		this.sortMenuInstrument();
+	},
+	// -------------------------------------------------------------------------
+	moveInstrumentToSeat: function( instrument, seat) {
+		if( -1 != instrument.seat) {
+			instrument.moveToDragStart();
+			return;
+		}
+		if( null != this.orchestra.seats[ seat].instrument) {
+			instrument.moveToDragStart();
+			return;
+		}
+
+		var i = 0;
+		for( ; i < this.slotMenu.length; ++i) {
+			if( this.slotMenu[i].name == instrument.name) {
+				break;
+			}
+		}
+		if( i < this.slotMenu.length) {
+			this.slotMenu.splice( i, 1);
+		} else {
+			instrument.moveToDragStart();
+			return;
+		}
+
+		this.orchestra.seats[ seat].instrument = instrument;
+
+		instrument.seat = seat;
+		instrument.moveTo( this.orchestra.seats[ seat].center);
+
+		this.sound.play( instrument.name);
+
+		this.sortMenuInstrument();
 	},
 	// -------------------------------------------------------------------------
 }

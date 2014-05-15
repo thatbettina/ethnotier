@@ -2,9 +2,9 @@
 /* orchestra.js */
 // -----------------------------------------------------------------------------
 
-function Orchestra( sound) {
+function Orchestra( globe) {
 	this.obj = $( '#orchestra');
-	this.sound = sound;
+	this.globe = globe;
 	this.seats = new Array();
 	this.collisionSeat = -1;
 
@@ -20,7 +20,7 @@ Orchestra.prototype = {
 
 		for( var i = 0; i < 4; ++i) {
 			$( '#mapContainer').append( '<div id="seat' + i + '" class="seat" style="left:' + (i*120+60) +'px;bottom:60px;">seat</div>');
-			this.seats[ i] = { obj: $( '#seat' + i) };
+			this.seats[ i] = { obj: $( '#seat' + i), instrument: null };
 
 			var pos = $( this.seats[ i].obj).position();
 			this.seats[ i].center = { x: pos.left + parseInt( this.seats[ i].obj.outerWidth( true) / 2), y: pos.top + parseInt( this.seats[ i].obj.outerHeight( true) / 2) };
@@ -67,18 +67,15 @@ Orchestra.prototype = {
 		if( this.collisionSeat == -1) {
 			instrument.moveToDragStart();
 		} else if( this.collisionSeat == this.seats.length) {
-			instrument.seat = -1;
 			this.collisionSeat = -1;
 
-			instrument.moveToGlobe();
+			this.globe.moveInstrumentToGlobe( instrument);
 		} else {
-			instrument.seat = this.collisionSeat;
+			$(this.seats[ this.collisionSeat].obj).removeClass( 'over');
+
+			this.globe.moveInstrumentToSeat( instrument, this.collisionSeat);
+
 			this.collisionSeat = -1;
-
-			$(this.seats[ instrument.seat].obj).removeClass( 'over');
-			instrument.moveTo( this.seats[ instrument.seat].center);
-
-			this.sound.play( instrument.name);
 		}
 	},
 	// -------------------------------------------------------------------------
