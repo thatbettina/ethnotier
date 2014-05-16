@@ -63,6 +63,7 @@ Globe.prototype = {
 			return;
 		}
 
+		this.sound.stop( instrument.name);
 		this.orchestra.seats[ instrument.seat].instrument = null;
 		instrument.seat = -1;
 
