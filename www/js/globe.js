@@ -71,24 +71,38 @@ Globe.prototype = {
 	},
 	// -------------------------------------------------------------------------
 	moveInstrumentToSeat: function( instrument, seat) {
-		if( -1 != instrument.seat) {
-			instrument.moveToDragStart();
-			return;
-		}
-		if( null != this.orchestra.seats[ seat].instrument) {
-			instrument.moveToDragStart();
-			return;
-		}
-
-		var i = 0;
-		for( ; i < this.slotMenu.length; ++i) {
-			if( this.slotMenu[i].name == instrument.name) {
+		var menuPosition = 0;
+		for( ; menuPosition < this.slotMenu.length; ++menuPosition) {
+			if( this.slotMenu[menuPosition].name == instrument.name) {
 				break;
 			}
 		}
-		if( i < this.slotMenu.length) {
-			this.slotMenu.splice( i, 1);
+		var seatIsTaken = (null != this.orchestra.seats[ seat].instrument);
+		var moveSeatToSeat = (-1 != instrument.seat);
+		var moveMenuToSeat = (menuPosition < this.slotMenu.length);
+
+		if( moveMenuToSeat && moveSeatToSeat) {
+			// should be impossible
+			instrument.moveToDragStart();
+			return;
+		} else if( moveMenuToSeat && seatIsTaken) {
+			this.moveInstrumentToGlobe( this.orchestra.seats[ seat].instrument);
+			this.slotMenu.splice( menuPosition, 1);
+			this.sortMenuInstrument();
+			this.sound.play( instrument.name);
+		} else if( moveMenuToSeat) {
+			this.slotMenu.splice( menuPosition, 1);
+			this.sortMenuInstrument();
+			this.sound.play( instrument.name);
+		} else if( moveSeatToSeat && seatIsTaken) {
+			this.orchestra.seats[ instrument.seat].instrument = null;
+			this.moveInstrumentToSeat( this.orchestra.seats[ seat].instrument, instrument.seat);
+			instrument.seat = -1;
+		} else if( moveSeatToSeat) {
+			this.orchestra.seats[ instrument.seat].instrument = null;
+			instrument.seat = -1;
 		} else {
+			// should be impossible
 			instrument.moveToDragStart();
 			return;
 		}
@@ -97,10 +111,6 @@ Globe.prototype = {
 
 		instrument.seat = seat;
 		instrument.moveTo( this.orchestra.seats[ seat].center);
-
-		this.sound.play( instrument.name);
-
-		this.sortMenuInstrument();
 	},
 	// -------------------------------------------------------------------------
 }
