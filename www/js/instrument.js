@@ -74,7 +74,7 @@ Instrument.prototype = {
 	dragStartFunc: function( event) {
 		this.draggingStart = $( this.obj).position();
 
-		$( this.obj).css({ opacity: '0.8' });
+		$( this.obj).addClass( 'drag');
 	},
 	// -------------------------------------------------------------------------
 	dragMoveFunc: function( event) {
@@ -90,7 +90,7 @@ Instrument.prototype = {
 	},
 	// -------------------------------------------------------------------------
 	dragEndFunc: function( event) {
-		$( this.obj).css({ opacity: '1'});
+		$( this.obj).removeClass( 'drag');
 
 		this.orchestra.endCollisionSeat( this);
 	},
