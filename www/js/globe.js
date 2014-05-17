@@ -109,6 +109,7 @@ Globe.prototype = {
 		}
 
 		this.orchestra.seats[ seat].instrument = instrument;
+		this.sound.volume( instrument.name, this.orchestra.seats[ seat].volume);
 
 		instrument.seat = seat;
 		instrument.moveTo( this.orchestra.seats[ seat].center);

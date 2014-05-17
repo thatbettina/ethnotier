@@ -26,6 +26,7 @@ Sound.prototype = {
 				this.channels[ i][ 'channel'].src = document.getElementById( 'audio' + source).src;
 				this.channels[ i][ 'channel'].load();
 				this.channels[ i][ 'channel'].play();
+				this.channels[ i][ 'channel'].loop = true;
 
 				return;
 			}
@@ -38,6 +39,17 @@ Sound.prototype = {
 			if( this.channels[ i][ 'channel'].src == src) {
 				this.channels[ i][ 'channel'].src = '';
 				this.channels[ i][ 'finished'] = -1;
+
+				return;
+			}
+		}
+	},
+	// -------------------------------------------------------------------------
+	volume: function( source, volume) {
+		var src = document.getElementById( 'audio' + source).src;
+		for( var i = 0; i < this.channels.length; ++i) {
+			if( this.channels[ i][ 'channel'].src == src) {
+				this.channels[ i][ 'channel'].volume = volume;
 
 				return;
 			}

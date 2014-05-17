@@ -18,12 +18,22 @@ Orchestra.prototype = {
 		$( '#mapContainer').append( '<div id="orchestra">orchestra (drag some instruments to the seats)</div>');
 		this.obj = $( '#orchestra');
 
-		for( var i = 0; i < 4; ++i) {
-			$( '#mapContainer').append( '<div id="seat' + i + '" class="seat" style="left:' + (i*120+60) +'px;bottom:60px;">seat</div>');
-			this.seats[ i] = { obj: $( '#seat' + i), instrument: null };
+		for( var i = 0; i < 3; ++i) {
+			var seat = this.seats.length;
+			$( '#mapContainer').append( '<div id="seat' + seat + '" class="seat" style="left:' + (i*120+120) +'px;bottom:140px;">seat</div>');
+			this.seats[ seat] = { obj: $( '#seat' + seat), instrument: null, volume: 0.33 };
 
-			var pos = $( this.seats[ i].obj).position();
-			this.seats[ i].center = { x: pos.left + parseInt( this.seats[ i].obj.outerWidth( true) / 2), y: pos.top + parseInt( this.seats[ i].obj.outerHeight( true) / 2) };
+			var pos = $( this.seats[ seat].obj).position();
+			this.seats[ seat].center = { x: pos.left + parseInt( this.seats[ seat].obj.outerWidth( true) / 2), y: pos.top + parseInt( this.seats[ seat].obj.outerHeight( true) / 2) };
+		}
+
+		for( var i = 0; i < 4; ++i) {
+			var seat = this.seats.length;
+			$( '#mapContainer').append( '<div id="seat' + seat + '" class="seat" style="left:' + (i*120+60) +'px;bottom:20px;">seat</div>');
+			this.seats[ seat] = { obj: $( '#seat' + seat), instrument: null, volume: 1.0 };
+
+			var pos = $( this.seats[ seat].obj).position();
+			this.seats[ seat].center = { x: pos.left + parseInt( this.seats[ seat].obj.outerWidth( true) / 2), y: pos.top + parseInt( this.seats[ seat].obj.outerHeight( true) / 2) };
 		}
 	},
 	// -------------------------------------------------------------------------
