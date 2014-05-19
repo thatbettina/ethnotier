@@ -5,23 +5,34 @@ Teammitglieder
 --------------
 
 Thomas
+
 Annika
 
 Bettina
+
 Daniel
 
 Zeitplan
 --------
 
 26.04.2014: Start von Coding da Vinci
+
 27.04.2014: Teamfindung, erste Entwürfe
+
 02.05.2014: Github aufgesetzt
+
 06.05.2014: Erster Prototyp: Drag'n'Drop von bunten Kästchen. Abspielen von Tierstimmen
+
 09.05.2014: Tierstimmenarchiv neu geordnet http://offene-naturfuehrer.de/web/Open_Source_Tierstimmen
+
 13.05.2014: Musikdaten der Musikinstrumente erhalten
+
 17.05.2014: Mehrkanal, Lautstärkeanpassung, Endlosschleife der Samples
 
+...
+
 05.06.2014: Präsentation auf dem Berlin Open Data Day
+
 06.07.2014: Präsentation bei Coding da Vinci
 
 Aktueller Stand
