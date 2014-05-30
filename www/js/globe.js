@@ -3,7 +3,8 @@
 // -----------------------------------------------------------------------------
 
 function Globe() {
-	this.obj = $( '#globe');
+	this.obj = $( '#imgGlobe');
+	this.mode = '';
 
 	if( 0 == this.obj.length) {
 		this.create();
@@ -12,17 +13,60 @@ function Globe() {
 Globe.prototype = {
 	// -------------------------------------------------------------------------
 	create: function() {
+		var that = this;
+
 		this.preloadGlobe();
+
+		$( window).resize( function() {
+			that.onResize();
+		});
+	},
+	// -------------------------------------------------------------------------
+	onResize: function() {
+		try {
+			var winHeight = $( window).height();
+			var winWidth = $( window).width();
+			var minimum = winHeight < winWidth ? winHeight : winWidth;
+			var centerX = 0, centerY = 0, imgWidth = 0, imgHeight = 0;
+
+			if( 'loading' == this.mode) {
+				centerX = winWidth / 2;
+				centerY = winHeight / 2;
+				imgWidth = minimum / 2;
+				imgHeight = minimum / 2;
+			} else if( 'basis' == this.mode) {
+				centerX = winWidth / 2;
+				centerY = winHeight / 5;
+				imgWidth = minimum / 3;
+				imgHeight = minimum / 3;
+			}
+
+			$( '#imgGlobe').css({
+				top: parseInt( centerY - imgHeight / 2) + 'px',
+				left: parseInt( centerX - imgWidth / 2) + 'px',
+				width: parseInt( imgWidth) + 'px',
+				height: parseInt( imgHeight) + 'px',
+			});
+		} catch( e) {
+			console.log( e);
+		}
 	},
 	// -------------------------------------------------------------------------
 	preloadGlobe: function() {
-		this.showGlobe();
-		this.preloadResources();
+		var that = this;
+
+		$( '<style type="text/css">#imgGlobe{position:absolute;z-index:50;}</style>').appendTo( 'head');
+		$( '<img id="imgGlobe" src="art/earth.svg" />').addClass( 'hidden userStatic').appendTo( '#mainContainer').load( function() {
+			that.showGlobe( 'loading');
+			that.preloadResources();
+		});
 	},
 	// -------------------------------------------------------------------------
-	showGlobe: function() {
-		$( '#mapContainer').append( '<div id="globe">globe</div>');
-		this.obj = $( '#globe');
+	showGlobe: function( mode) {
+		this.mode = mode;
+		this.onResize();
+
+		$( '#imgGlobe').removeClass( 'hidden');
 	},
 	// -------------------------------------------------------------------------
 	preloadResources: function() {
@@ -31,6 +75,8 @@ Globe.prototype = {
 		this.cabinet = new Cabinet();
 
 		this.slotMenu = [];
+
+		this.showGlobe( 'basis');
 
 		this.showMenuInstrument();
 	},
