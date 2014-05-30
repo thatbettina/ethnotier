@@ -15,7 +15,7 @@ function Instrument( name, orchestra) {
 Instrument.prototype = {
 	// -------------------------------------------------------------------------
 	create: function() {
-		$( '#mapContainer').append( '<div id="instrument' + this.name + '" class="instrument">' + this.name + '</div>');
+		$( '#mainContainer').append( '<div id="instrument' + this.name + '" class="instrument">' + this.name + '</div>');
 		this.obj = $( '#instrument' + this.name);
 
 		var obj = this;

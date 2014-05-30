@@ -2,14 +2,14 @@
 /* custom.js */
 // -----------------------------------------------------------------------------
 
-$( document).on( "pagecreate", "#pageMap", function()
+$( document).on( "pagecreate", "#pageMain", function()
 {
 	$( document).bind( 'touchmove', false);
 });
 
 // -----------------------------------------------------------------------------
 
-$( document).on( "pageshow", "#pageMap", function()
+$( document).on( "pageshow", "#pageMain", function()
 {
 	var globe = new Globe;
 });

@@ -15,12 +15,12 @@ function Orchestra( globe) {
 Orchestra.prototype = {
 	// -------------------------------------------------------------------------
 	create: function() {
-		$( '#mapContainer').append( '<div id="orchestra">orchestra (drag some instruments to the seats)</div>');
+		$( '#mainContainer').append( '<div id="orchestra">orchestra (drag some instruments to the seats)</div>');
 		this.obj = $( '#orchestra');
 
 		for( var i = 0; i < 3; ++i) {
 			var seat = this.seats.length;
-			$( '#mapContainer').append( '<div id="seat' + seat + '" class="seat" style="left:' + (i*120+120) +'px;bottom:140px;">seat</div>');
+			$( '#mainContainer').append( '<div id="seat' + seat + '" class="seat" style="left:' + (i*120+120) +'px;bottom:140px;">seat</div>');
 			this.seats[ seat] = { obj: $( '#seat' + seat), instrument: null, volume: 0.33 };
 
 			var pos = $( this.seats[ seat].obj).position();
@@ -29,7 +29,7 @@ Orchestra.prototype = {
 
 		for( var i = 0; i < 4; ++i) {
 			var seat = this.seats.length;
-			$( '#mapContainer').append( '<div id="seat' + seat + '" class="seat" style="left:' + (i*120+60) +'px;bottom:20px;">seat</div>');
+			$( '#mainContainer').append( '<div id="seat' + seat + '" class="seat" style="left:' + (i*120+60) +'px;bottom:20px;">seat</div>');
 			this.seats[ seat] = { obj: $( '#seat' + seat), instrument: null, volume: 1.0 };
 
 			var pos = $( this.seats[ seat].obj).position();

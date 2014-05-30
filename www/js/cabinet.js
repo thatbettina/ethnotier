@@ -33,7 +33,7 @@ Cabinet.prototype = {
 	// -------------------------------------------------------------------------
 	preloadInstruments: function() {
 		for( var i = 0; i < this.instruments.length; ++i) {
-			$( '#mapContainer').append( '<audio id="audio' + this.instruments[i].name + '" src="' + this.instruments[i].src + '" preload="auto"></audio>');
+			$( '#mainContainer').append( '<audio id="audio' + this.instruments[i].name + '" src="' + this.instruments[i].src + '" preload="auto"></audio>');
 		}
 	},
 	// -------------------------------------------------------------------------
