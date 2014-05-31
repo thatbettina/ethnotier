@@ -5,6 +5,7 @@
 function Globe() {
 	this.obj = $( '#imgGlobe');
 	this.mode = '';
+	this.canvas = null;
 
 	if( 0 == this.obj.length) {
 		this.create();
@@ -47,6 +48,10 @@ Globe.prototype = {
 				width: parseInt( imgWidth) + 'px',
 				height: parseInt( imgHeight) + 'px',
 			});
+
+			if( this.canvas != null) {
+				this.canvas.onResize();
+			}
 		} catch( e) {
 			console.log( e);
 		}
@@ -55,9 +60,13 @@ Globe.prototype = {
 	preloadGlobe: function() {
 		var that = this;
 
-		$( '<style type="text/css">#imgGlobe{position:absolute;z-index:50;}</style>').appendTo( 'head');
-		$( '<img id="imgGlobe" src="art/earth.svg" />').addClass( 'hidden userStatic').appendTo( '#mainContainer').load( function() {
+		preload.begin();
+		preload.addCSS( '#imgGlobe', 'position:absolute;z-index:50;width:0;height:0;');
+		preload.addImage( 'imgGlobe', 'art/earth.svg');
+		preload.wait( function() {
 			that.showGlobe( 'loading');
+			$( '#imgGlobe').removeClass( 'hidden');
+
 			that.preloadResources();
 		});
 	},
@@ -65,20 +74,27 @@ Globe.prototype = {
 	showGlobe: function( mode) {
 		this.mode = mode;
 		this.onResize();
-
-		$( '#imgGlobe').removeClass( 'hidden');
+	},
+	// -------------------------------------------------------------------------
+	wakeUp: function() {
+		this.showGlobe( 'basis');
+		this.canvas.wakeUp();
 	},
 	// -------------------------------------------------------------------------
 	preloadResources: function() {
-		this.sound = new Sound;
-		this.orchestra = new Orchestra( this);
-		this.cabinet = new Cabinet();
+		var that = this;
 
-		this.slotMenu = [];
+		this.canvas = new Canvas( function() {
+			that.sound = new Sound;
+			that.orchestra = new Orchestra( that);
+			that.cabinet = new Cabinet();
 
-		this.showGlobe( 'basis');
+			that.slotMenu = [];
 
-		this.showMenuInstrument();
+			that.wakeUp();
+
+			that.showMenuInstrument();
+		});
 	},
 	// -------------------------------------------------------------------------
 	showMenuInstrument: function() {

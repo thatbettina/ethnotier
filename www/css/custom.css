@@ -51,25 +51,7 @@ body {
 
 /* ---------- */
 
-
-#globe {
-	background-color:#069;
-	width:300px;
-	height:300px;
-	position:absolute;
-	top:100px;
-	left:100px;
-	border-radius:150px;
-	-webkit-user-select:none;
-	-khtml-user-select:none;
-	-moz-user-select:none;
-	-ms-user-select:none;
-	user-select:none;
-	text-align:center;
-}
-
 #orchestra {
-	background-color:#b96;
 	width:100%;
 	height:260px;
 	position:absolute;
