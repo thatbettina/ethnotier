@@ -67,7 +67,7 @@ body {
 }
 
 .instrument {
-	background-color:rgba(204,102,102,1);
+	background-color:rgba(255,255,255,0.8);
 	width:90px;
 	height:60px;
 	border-radius:10px;
@@ -82,7 +82,7 @@ body {
 }
 
 .instrument.drag{
-	background-color:rgba(204,102,102,0.8);
+	background-color:rgba(255,255,255,1);
 	z-index:51;
 }
 

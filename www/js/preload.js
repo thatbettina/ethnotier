@@ -43,14 +43,16 @@ Preload.prototype = {
 		$( '<style type="text/css">' + selector + '{' + css + '}</style>').appendTo( 'head');
 	},
 	// -------------------------------------------------------------------------
-	addImage: function( id, src) {
+	addImage: function( id, src, parent) {
+		parent = parent || '#mainContainer';
+
 		if( -1 == $.inArray( src, this.media)) {
 			this.media.push( src);
-			$( '<img id="' + id + '" src="' + src + '" />').addClass( 'hidden userStatic').appendTo( '#mainContainer').load( function() {
+			$( '<img id="' + id + '" src="' + src + '" />').addClass( 'hidden userStatic').appendTo( parent).load( function() {
 				preload.mediaLoaded();
 			});
 		} else {
-			$( '<img id="' + id + '" src="' + src + '" />').addClass( 'hidden userStatic').appendTo( '#mainContainer');
+			$( '<img id="' + id + '" src="' + src + '" />').addClass( 'hidden userStatic').appendTo( parent);
 		}
 	},
 	// -------------------------------------------------------------------------

@@ -11,7 +11,9 @@ $( document).on( "pagecreate", "#pageMain", function()
 
 $( document).on( "pageshow", "#pageMain", function()
 {
-	var globe = new Globe;
+	setTimeout( function(){
+		var globe = new Globe;
+	}, 50);
 });
 
 // -----------------------------------------------------------------------------
