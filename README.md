@@ -29,9 +29,13 @@ Zeitplan
 
 17.05.2014: Mehrkanal, Lautst‰rkeanpassung, Endlosschleife der Samples
 
-...
+24.05.2014: Erstellung der BODDy Pr‰sentation
 
-05.06.2014: Pr‰sentation auf dem Berlin Open Data Day
+30.05.2014: Einbau der ersten Spielegrafiken
+
+05.06.2014: Pr‰sentation auf dem Berlin Open Data Day (BODDy 14)
+
+...
 
 06.07.2014: Pr‰sentation bei Coding da Vinci
 
@@ -42,4 +46,4 @@ Zur Zeit ist das Projekt eine HTML-Seite die im Browser angezeigt werden kann. M
 
 Die HTML-Seite funktioniert auf einem iPad einwandfrei. Nur die Lautst‰rke kann z.Z. nicht ver‰ndert werden. Das Ziel bis zur Abschluﬂpr‰sentation ist das Umwandeln der HTML-Seite zu einer iPad-App (als Demo).
 
-Die n‰chsten Schritte sind der Einbau von ersten Grafiken und von Musikinstrumenten.
+Die n‰chsten Schritte sind die Auswahl der Tierstimmen und der Musikinstrumente.
