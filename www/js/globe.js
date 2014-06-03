@@ -52,6 +52,9 @@ Globe.prototype = {
 			if( this.canvas != null) {
 				this.canvas.onResize();
 			}
+			if( this.orchestra != null) {
+				this.orchestra.onResize();
+			}
 		} catch( e) {
 			console.log( e);
 		}

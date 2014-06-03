@@ -22,15 +22,21 @@ Orchestra.prototype = {
 	// -------------------------------------------------------------------------
 	onResize: function() {
 		try {
+			if( this.seats.length == 0) {
+				return;
+			}
+
 			var winHeight = $( window).height();
 			var winWidth = $( window).width();
 
+			var size = winWidth / (this.seats.length + 1);
+
 			for( var seat = 0; seat < this.seats.length; ++seat) {
 				$( '#imgSeat' + seat).css({
-					bottom: parseInt( 100) + 'px',
-					left: parseInt( 50 + seat * 100) + 'px',
-					width: parseInt( 50) + 'px',
-					height: parseInt( 50) + 'px',
+					top: parseInt( winHeight - size * 1.25) + 'px',
+					left: parseInt( size * (seat + .5)) + 'px',
+					width: parseInt( size) + 'px',
+					height: parseInt( size) + 'px',
 				});
 
 				var pos = $( this.seats[ seat].obj).position();
@@ -47,7 +53,7 @@ Orchestra.prototype = {
 		for( var seat = 0; seat < 7; ++seat) {
 			preload.addCSS( '#imgSeat' + seat, 'position:absolute;z-index:10;width:0;height:0;');
 			preload.addCSS( '#imgSeat' + seat + '.over', 'background-color:rgba(255,255,255,0.5);');
-			preload.addImage( 'imgSeat' + seat, 'art/seat1.svg');
+			preload.addImage( 'imgSeat' + seat, 'art/seat' + (1+Math.floor(Math.random()*3)) + '.svg');
 
 			this.seats[ seat] = {
 				obj: $( '#imgSeat' + seat),
