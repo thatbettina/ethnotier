@@ -2,38 +2,70 @@
 /* orchestra.js */
 // -----------------------------------------------------------------------------
 
-function Orchestra( globe) {
-	this.obj = $( '#orchestra');
+function Orchestra( globe, callback) {
 	this.globe = globe;
+
+	this.obj = null;
 	this.seats = new Array();
 	this.collisionSeat = -1;
 
-	if( 0 == this.obj.length) {
-		this.create();
-	}
+	this.create( callback);
 }
 Orchestra.prototype = {
 	// -------------------------------------------------------------------------
-	create: function() {
+	create: function( callback) {
 		$( '#mainContainer').append( '<div id="orchestra">orchestra (drag some instruments to the seats)</div>');
 		this.obj = $( '#orchestra');
 
-		for( var i = 0; i < 3; ++i) {
-			var seat = this.seats.length;
-			$( '#mainContainer').append( '<div id="seat' + seat + '" class="seat" style="left:' + (i*120+120) +'px;bottom:140px;">seat</div>');
-			this.seats[ seat] = { obj: $( '#seat' + seat), instrument: null, volume: 0.33 };
+		this.preloadCanvas( callback);
+	},
+	// -------------------------------------------------------------------------
+	onResize: function() {
+		try {
+			var winHeight = $( window).height();
+			var winWidth = $( window).width();
 
-			var pos = $( this.seats[ seat].obj).position();
-			this.seats[ seat].center = { x: pos.left + parseInt( this.seats[ seat].obj.outerWidth( true) / 2), y: pos.top + parseInt( this.seats[ seat].obj.outerHeight( true) / 2) };
+			for( var seat = 0; seat < this.seats.length; ++seat) {
+				$( '#imgSeat' + seat).css({
+					bottom: parseInt( 100) + 'px',
+					left: parseInt( 50 + seat * 100) + 'px',
+					width: parseInt( 50) + 'px',
+					height: parseInt( 50) + 'px',
+				});
+
+				var pos = $( this.seats[ seat].obj).position();
+				this.seats[ seat].center = { x: pos.left + parseInt( this.seats[ seat].obj.outerWidth( true) / 2), y: pos.top + parseInt( this.seats[ seat].obj.outerHeight( true) / 2) };
+			}
+		} catch( e) {
+			console.log( e);
+		}
+	},
+	// -------------------------------------------------------------------------
+	preloadCanvas: function( callback) {
+		preload.begin();
+
+		for( var seat = 0; seat < 7; ++seat) {
+			preload.addCSS( '#imgSeat' + seat, 'position:absolute;z-index:10;width:0;height:0;');
+			preload.addCSS( '#imgSeat' + seat + '.over', 'background-color:rgba(255,255,255,0.5);');
+			preload.addImage( 'imgSeat' + seat, 'art/seat1.svg');
+
+			this.seats[ seat] = {
+				obj: $( '#imgSeat' + seat),
+				instrument: null,
+				volume: 1.0 - seat * .1
+			};
 		}
 
-		for( var i = 0; i < 4; ++i) {
-			var seat = this.seats.length;
-			$( '#mainContainer').append( '<div id="seat' + seat + '" class="seat" style="left:' + (i*120+60) +'px;bottom:20px;">seat</div>');
-			this.seats[ seat] = { obj: $( '#seat' + seat), instrument: null, volume: 1.0 };
+		preload.wait( function() {
+			callback();
+		});
+	},
+	// -------------------------------------------------------------------------
+	wakeUp: function() {
+		this.onResize();
 
-			var pos = $( this.seats[ seat].obj).position();
-			this.seats[ seat].center = { x: pos.left + parseInt( this.seats[ seat].obj.outerWidth( true) / 2), y: pos.top + parseInt( this.seats[ seat].obj.outerHeight( true) / 2) };
+		for( var seat = 0; seat < this.seats.length; ++seat) {
+			$( '#imgSeat' + seat).removeClass( 'hidden');
 		}
 	},
 	// -------------------------------------------------------------------------

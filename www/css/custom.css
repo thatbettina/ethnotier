@@ -86,21 +86,4 @@ body {
 	z-index:51;
 }
 
-.seat {
-	background-color:rgba(255,255,255,0.5);
-	width:100px;
-	height:100px;
-	position:absolute;
-	-webkit-user-select:none;
-	-khtml-user-select:none;
-	-moz-user-select:none;
-	-ms-user-select:none;
-	user-select:none;
-	text-align:center;
-}
-
-.seat.over{
-	background-color:rgba(255,255,255,0.9);
-}
-
 /* end */

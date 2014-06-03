@@ -79,6 +79,7 @@ Globe.prototype = {
 	wakeUp: function() {
 		this.showGlobe( 'basis');
 		this.canvas.wakeUp();
+		this.orchestra.wakeUp();
 	},
 	// -------------------------------------------------------------------------
 	preloadResources: function() {
@@ -86,14 +87,16 @@ Globe.prototype = {
 
 		this.canvas = new Canvas( function() {
 			that.sound = new Sound;
-			that.orchestra = new Orchestra( that);
-			that.cabinet = new Cabinet();
 
-			that.slotMenu = [];
+			that.orchestra = new Orchestra( that, function() {
+				that.cabinet = new Cabinet();
 
-			that.wakeUp();
+				that.slotMenu = [];
 
-			that.showMenuInstrument();
+				that.wakeUp();
+
+				that.showMenuInstrument();
+			});
 		});
 	},
 	// -------------------------------------------------------------------------
