@@ -14,7 +14,7 @@ function Orchestra( globe, callback) {
 Orchestra.prototype = {
 	// -------------------------------------------------------------------------
 	create: function( callback) {
-		$( '#mainContainer').append( '<div id="orchestra">orchestra (drag some instruments to the seats)</div>');
+		$( '#mainContainer').append( '<div id="orchestra"></div>');
 		this.obj = $( '#orchestra');
 
 		this.preloadCanvas( callback);
@@ -50,7 +50,7 @@ Orchestra.prototype = {
 	preloadCanvas: function( callback) {
 		preload.begin();
 
-		for( var seat = 0; seat < 7; ++seat) {
+		for( var seat = 0; seat < 11; ++seat) {
 			preload.addCSS( '#imgSeat' + seat, 'position:absolute;z-index:10;width:0;height:0;');
 			preload.addCSS( '#imgSeat' + seat + '.over', 'background-color:rgba(255,255,255,0.5);');
 			preload.addImage( 'imgSeat' + seat, 'art/seat' + (1+Math.floor(Math.random()*3)) + '.svg');

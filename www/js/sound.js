@@ -8,7 +8,7 @@ function Sound() {
 Sound.prototype = {
 	// -------------------------------------------------------------------------
 	create: function() {
-		var channelCount = 10;
+		var channelCount = 15;
 		this.channels = new Array();
 
 		for( var i = 0; i < channelCount; ++i) {
