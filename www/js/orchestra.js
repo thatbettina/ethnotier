@@ -50,7 +50,7 @@ Orchestra.prototype = {
 	preloadCanvas: function( callback) {
 		preload.begin();
 
-		for( var seat = 0; seat < 11; ++seat) {
+		for( var seat = 0; seat < 12; ++seat) {
 			preload.addCSS( '#imgSeat' + seat, 'position:absolute;z-index:10;width:0;height:0;');
 			preload.addCSS( '#imgSeat' + seat + '.over', 'background-color:rgba(255,255,255,0.5);');
 			preload.addImage( 'imgSeat' + seat, 'art/seat' + (1+Math.floor(Math.random()*3)) + '.svg');
@@ -58,7 +58,7 @@ Orchestra.prototype = {
 			this.seats[ seat] = {
 				obj: $( '#imgSeat' + seat),
 				instrument: null,
-				volume: 1.0 - seat * .1
+				volume: 1.0 - seat * .05
 			};
 		}
 

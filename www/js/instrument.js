@@ -15,7 +15,13 @@ function Instrument( name, orchestra) {
 Instrument.prototype = {
 	// -------------------------------------------------------------------------
 	create: function() {
-		$( '#mainContainer').append( '<div id="instrument' + this.name + '" class="instrument">' + this.name + '</div>');
+		if( 'toad' == this.name) {
+			$( '#mainContainer').append( '<img id="instrument' + this.name + '" class="instrumentImg" src="art/animalfrog.svg">');
+		} else if( 'swift' == this.name) {
+			$( '#mainContainer').append( '<img id="instrument' + this.name + '" class="instrumentImg" src="art/animalbird.svg">');
+		} else {
+			$( '#mainContainer').append( '<div id="instrument' + this.name + '" class="instrument"><img src="art/animalvoid.svg" style="width:70px;height:70px;">' + this.name + '</div>');
+		}
 		this.obj = $( '#instrument' + this.name);
 
 		var obj = this;

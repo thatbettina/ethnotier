@@ -113,7 +113,7 @@ Globe.prototype = {
 	// -------------------------------------------------------------------------
 	sortMenuInstrument: function() {
 		for( var i = 0; i < this.slotMenu.length; ++i) {
-			this.slotMenu[i].moveTo({ x: 100 * i + 50, y: 250});
+			this.slotMenu[i].moveTo({ x: 80 * i + 50, y: 250});
 		}
 	},
 	// -------------------------------------------------------------------------

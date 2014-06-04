@@ -67,9 +67,9 @@ body {
 }
 
 .instrument {
-	background-color:rgba(255,255,255,0.8);
-	width:90px;
-	height:60px;
+	background-color:rgba(255,255,255,0.5);
+	width:70px;
+	height:98px;
 	border-radius:10px;
 	position:absolute;
 	-webkit-user-select:none;
@@ -82,7 +82,19 @@ body {
 }
 
 .instrument.drag{
-	background-color:rgba(255,255,255,1);
+	background-color:rgba(255,255,255,0.8);
+	z-index:51;
+}
+
+.instrumentImg {
+	width:70px;
+	height:98px;
+	position:absolute;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
 	z-index:51;
 }
 
