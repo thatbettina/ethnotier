@@ -37,6 +37,9 @@ Cabinet.prototype = {
 		{name:'owl',     src:'media/Bubo_bubo_TSA-medium.mp3'},
 		{name:'wolf',    src:'media/Canis_lupus_TSA-medium.mp3'},*/
 		// source: CC BY https://commons.wikimedia.org/wiki/Category:Audiodateien_des_Ethnologischen_Museums
+		// source: CC BY SA https://www.flickr.com/photos/121003427@N03/
+		// metadata: CC BY https://offenedaten.de/de/dataset/metadaten-vii
+		// metadata: CC BY https://offenedaten.de/de/dataset/metadaten-ic
 		{name:'I_C_1479',    src:'https://upload.wikimedia.org/wikipedia/commons/7/7b/I_C_1479_g_x.ogg'},
 		{name:'I_C_38635',   src:'https://upload.wikimedia.org/wikipedia/commons/d/da/I_C_38635_b_x.ogg'},
 		{name:'III_C_30616', src:'https://upload.wikimedia.org/wikipedia/commons/3/3c/III_C_30616_x.ogg'},
