@@ -3,7 +3,7 @@
         xmlns:gap="http://phonegap.com/ns/1.0"
         id="de.tursics.ethnotier"
         version="0.1"
-        versionCode="1">
+        versionCode="2">
 
 	<!-- Essential property -->
 	<name>EthnoTier</name>
@@ -47,15 +47,13 @@
 	<gap:platform name="android" />
 	<!--
 		Version		Codename			API	Distribution
-======>	2.3.3-2.3.7	Gingerbread			10	17.8%
-		3.2			Honeycomb			13	0.1%        <--- tablet based
 		4.0.3-4.0.4	Ice Cream Sandwich	15	14.3%
 		4.1.x		Jelly Bean			16	34.4%
-		4.2.x							17	18.1%       <--- Empfehlung TZI
+		4.2.x							17	18.1%
 		4.3								18	8.9%
 		4.4			KitKat				19	5.3%
 	-->
-	<preference name="android-minSdkVersion" value="10" />
+	<preference name="android-minSdkVersion" value="15" />
 	<!-- <preference name="android-maxSdkVersion" value="15" /> -->
 	<!-- <preference name="android-targetSdkVersion" value="11" /> -->
 	<!-- <preference name="android-installLocation" value="auto" /> -->
@@ -73,7 +71,7 @@
 	<!-- Useful property -->
 	<preference name="phonegap-version" value="3.3.0" />
 	<preference name="orientation" value="default" />
-	<!-- <preference name="fullscreen" value="true" /> -->
+	<preference name="fullscreen" value="true" />
 	<preference name="webviewbounce" value="false" />
 	<preference name="permissions" value="none" />
 	<!-- <preference name="stay-in-webview" value="false" /> -->
