@@ -49,6 +49,7 @@ Sound.prototype = {
 		var src = document.getElementById( 'audio' + source).src;
 		for( var i = 0; i < this.channels.length; ++i) {
 			if( this.channels[ i][ 'channel'].src == src) {
+				this.channels[ i][ 'channel'].vol = volume;
 				this.channels[ i][ 'channel'].volume = volume;
 
 				return;
