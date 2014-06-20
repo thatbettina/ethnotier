@@ -1,7 +1,7 @@
 Google play
 ===========
 
-https://play.google.com/store/apps/details?id=de.tursics.ethnotier
+https://play.google.com/apps/testing/de.tursics.ethnotier
 
 Was brauche ich alles um eine App bei Google play zu veröffentlichen?
 

@@ -28,30 +28,33 @@
 	<!-- <preference name="ios-statusbarstyle" value="black-opaque" /> -->
 	<!-- <preference name="detect-data-types" value="true" /> -->
 	<!-- <preference name="exit-on-suspend" value="false" /> -->
+	<!-- iOS 6.1 -->
 	<icon src="art/icon57.png" gap:platform="ios" width="57" height="57" />
 	<icon src="art/icon72.png" gap:platform="ios" width="72" height="72" />
 	<icon src="art/icon114.png" gap:platform="ios" width="114" height="114" />
 	<icon src="art/icon144.png" gap:platform="ios" width="144" height="144" />
-	<!-- The bundle does not contain an app icon for iPhone / iPod Touch of exactly '120x120' pixels, in .png format. -->
-	<!-- The bundle does not contain an app icon for iPad of exactly '76x76' pixels, in .png format. -->
-	<!-- The bundle does not contain an app icon for iPad of exactly '152x152' pixels, in .png format. -->
+	<!-- iOS 7.0 -->
+	<icon src="art/icon60.png" gap:platform="ios" width="60" height="60" />
+	<icon src="art/icon76.png" gap:platform="ios" width="76" height="76" />
+	<icon src="art/icon120.png" gap:platform="ios" width="120" height="120" />
+	<icon src="art/icon152.png" gap:platform="ios" width="152" height="152" />
 	<gap:splash src="splash.png" gap:platform="ios" width="320" height="480" />
 	<gap:splash src="splash.png" gap:platform="ios" width="640" height="960" />
 	<gap:splash src="splash.png" gap:platform="ios" width="640" height="1136" />
-	<gap:splash src="splash.png" gap:platform="ios" width="768" height="1004" />
-	<gap:splash src="splash.png" gap:platform="ios" width="1024" height="748" />
-	<gap:splash src="splash.png" gap:platform="ios" width="1536" height="2008" />
-	<gap:splash src="splash.png" gap:platform="ios" width="2048" height="1496" />
+	<gap:splash src="splash.png" gap:platform="ios" width="768" height="1024" />
+	<gap:splash src="splash.png" gap:platform="ios" width="1024" height="768" />
+	<gap:splash src="splash.png" gap:platform="ios" width="1536" height="2048" />
+	<gap:splash src="splash.png" gap:platform="ios" width="2048" height="1536" />
 
 	<!-- Android -->
 	<gap:platform name="android" />
 	<!--
 		Version		Codename			API	Distribution
-		4.0.3-4.0.4	Ice Cream Sandwich	15	14.3%
-		4.1.x		Jelly Bean			16	34.4%
-		4.2.x							17	18.1%
-		4.3								18	8.9%
-		4.4			KitKat				19	5.3%
+		4.0.3-4.0.4	Ice Cream Sandwich	15	12.3%
+		4.1.x		Jelly Bean			16	29.0%
+		4.2.x		Jelly Bean			17	19.1%
+		4.3			Jelly Bean			18	10.3%
+		4.4			KitKat				19	13.6%
 	-->
 	<preference name="android-minSdkVersion" value="15" />
 	<!-- <preference name="android-maxSdkVersion" value="15" /> -->
@@ -59,14 +62,16 @@
 	<!-- <preference name="android-installLocation" value="auto" /> -->
 	<!-- <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" /> -->
 	<preference name="splash-screen-duration" value="200"/>
-	<icon src="art/icon36.png" gap:platform="android" gap:density="ldpi" />
-	<icon src="art/icon48.png" gap:platform="android" gap:density="mdpi" />
-	<icon src="art/icon72.png" gap:platform="android" gap:density="hdpi" />
-	<icon src="art/icon96.png" gap:platform="android" gap:density="xhdpi" />
-	<gap:splash src="splash.png" gap:platform="android" gap:density="ldpi" />
-	<gap:splash src="splash.png" gap:platform="android" gap:density="mdpi" />
-	<gap:splash src="splash.png" gap:platform="android" gap:density="hdpi" />
-	<gap:splash src="splash.png" gap:platform="android" gap:density="xhdpi" />
+	<icon src="art/icon36.png" gap:platform="android" gap:qualifier="ldpi" />
+	<icon src="art/icon48.png" gap:platform="android" gap:qualifier="mdpi" />
+	<icon src="art/icon72.png" gap:platform="android" gap:qualifier="hdpi" />
+	<icon src="art/icon96.png" gap:platform="android" gap:qualifier="xhdpi" />
+	<!-- icon src="art/icon?.png" gap:platform="android" gap:qualifier="xxhdpi" / -->
+	<gap:splash src="splash.png" gap:platform="android" gap:qualifier="ldpi" />
+	<gap:splash src="splash.png" gap:platform="android" gap:qualifier="mdpi" />
+	<gap:splash src="splash.png" gap:platform="android" gap:qualifier="hdpi" />
+	<gap:splash src="splash.png" gap:platform="android" gap:qualifier="xhdpi" />
+	<gap:splash src="splash.png" gap:platform="android" gap:qualifier="xxhdpi" />
 
 	<!-- Useful property -->
 	<preference name="phonegap-version" value="3.3.0" />
