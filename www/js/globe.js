@@ -70,6 +70,22 @@ Globe.prototype = {
 			that.showGlobe( 'loading');
 			$( '#imgGlobe').removeClass( 'hidden');
 
+			// http://desandro.github.io/3dtransforms/docs/carousel.html
+			var max = 9;
+
+			var str = '<section class="container"><div id="carousel">';
+			for( var i = 0; i < max; ++i) {
+				str += '<figure>' + (i + 1) + '</figure>';
+			}
+			str += '</div></section>';
+			$( '#mainContainer').append( str);
+			preload.addCSS( '.container', 'width:210px;height:140px;position:relative;-webkit-perspective:1000px;-moz-perspective:1000px;perspective:1000px;z-index:1000;');
+			preload.addCSS( '#carousel', 'width:100%;height:100%;position:absolute;transform-style:preserve-3d;');
+			preload.addCSS( '#carousel figure', 'display:block;position:absolute;width:186px;height:116px;left:10px;top:10px;border:2px solid black;background-color:rgba(255,255,255,0.25)');
+			for( var i = 0; i < max; ++i) {
+				preload.addCSS( '#carousel figure:nth-child(' + (i + 1) + ')', '-webkit-transform:rotateY(' + parseInt(i*(360 / max)) + 'deg) translateZ(288px);-moz-transform:rotateY(' + parseInt(i*(360 / max)) + 'deg) translateZ(288px);transform:rotateY(' + parseInt(i*(360 / max)) + 'deg) translateZ(288px);');
+			}
+
 			that.preloadResources();
 		});
 	},
