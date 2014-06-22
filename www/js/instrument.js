@@ -19,6 +19,8 @@ Instrument.prototype = {
 			$( '#mainContainer').append( '<img id="instrument' + this.name + '" class="instrumentImg" src="art/animalfrog.svg">');
 		} else if( 'swift' == this.name) {
 			$( '#mainContainer').append( '<img id="instrument' + this.name + '" class="instrumentImg" src="art/animalbird.svg">');
+		} else if( 'wolf' == this.name) {
+			$( '#mainContainer').append( '<img id="instrument' + this.name + '" class="instrumentImg" src="art/animalwolf.svg">');
 		} else {
 			$( '#mainContainer').append( '<div id="instrument' + this.name + '" class="instrument"><img src="art/animalvoid.svg" style="width:70px;height:70px;">' + this.name + '</div>');
 		}
