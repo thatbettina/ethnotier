@@ -61,17 +61,21 @@ Globe.prototype = {
 	},
 	// -------------------------------------------------------------------------
 	preloadGlobe: function() {
-		var that = this;
+		var obj = this;
 
 		preload.begin();
 		preload.addCSS( '#imgGlobe', 'position:absolute;z-index:50;width:0;height:0;');
 		preload.addImage( 'imgGlobe', 'art/earth.svg');
 		preload.wait( function() {
-			that.showGlobe( 'loading');
-			$( '#imgGlobe').removeClass( 'hidden');
+			obj.obj = $( '#imgGlobe');
+			obj.showGlobe( 'loading');
+			obj.obj.removeClass( 'hidden');
 
 			// http://desandro.github.io/3dtransforms/docs/carousel.html
 			var max = 9;
+
+			var width = 210;
+			var transZ = Math.round(( width / 2 ) / Math.tan( Math.PI / max));
 
 			var str = '<section class="container"><div id="carousel">';
 			for( var i = 0; i < max; ++i) {
@@ -79,14 +83,67 @@ Globe.prototype = {
 			}
 			str += '</div></section>';
 			$( '#mainContainer').append( str);
-			preload.addCSS( '.container', 'width:210px;height:140px;position:relative;-webkit-perspective:1000px;-moz-perspective:1000px;perspective:1000px;z-index:1000;');
+			preload.addCSS( '.container', 'width:'+width+'px;height:140px;position:relative;-webkit-perspective:1000px;-moz-perspective:1000px;perspective:1000px;z-index:1000;');
 			preload.addCSS( '#carousel', 'width:100%;height:100%;position:absolute;transform-style:preserve-3d;');
 			preload.addCSS( '#carousel figure', 'display:block;position:absolute;width:186px;height:116px;left:10px;top:10px;border:2px solid black;background-color:rgba(255,255,255,0.25)');
+
 			for( var i = 0; i < max; ++i) {
-				preload.addCSS( '#carousel figure:nth-child(' + (i + 1) + ')', '-webkit-transform:rotateY(' + parseInt(i*(360 / max)) + 'deg) translateZ(288px);-moz-transform:rotateY(' + parseInt(i*(360 / max)) + 'deg) translateZ(288px);transform:rotateY(' + parseInt(i*(360 / max)) + 'deg) translateZ(288px);');
+				var rotY = parseInt( i * (360 / max));
+				preload.addCSS( '#carousel figure:nth-child(' + (i + 1) + ')', '-webkit-transform:rotateY('+rotY+'deg) translateZ('+transZ+'px);-moz-transform:rotateY('+rotY+'deg) translateZ('+transZ+'px);transform:rotateY('+rotY+'deg) translateZ('+transZ+'px);');
 			}
 
-			that.preloadResources();
+			obj.obj.removeClass( 'userStatic');
+			obj.obj.on( 'selectstart', function() {
+				return false;
+			});
+			obj.obj.on( 'touchstart mousedown', function( event) {
+				event.preventDefault();
+
+				if(( typeof event.originalEvent.touches !== 'undefined') && (event.originalEvent.touches.length > 0)) {
+					event.pageX = event.originalEvent.touches[0].pageX;
+					event.pageY = event.originalEvent.touches[0].pageY;
+				}
+
+				obj.dragMousePos = { x: event.pageX, y: event.pageY };
+				obj.dragMouseDiff = { x: 0, y: 0 };
+
+				$( document).on( 'touchmove mousemove', eventDragMoveEvent);
+				$( document).on( 'touchend mouseup mouseleave', eventDragEndFunc);
+
+				obj.dragStartFunc.call( obj, event);
+
+				function eventDragMoveEvent( event)
+				{
+					event.preventDefault();
+
+					if(( typeof event.originalEvent.touches !== 'undefined') && (event.originalEvent.touches.length > 0)) {
+						event.pageX = event.originalEvent.touches[0].pageX;
+						event.pageY = event.originalEvent.touches[0].pageY;
+					}
+
+					obj.dragMouseDiff.x = event.pageX - obj.dragMousePos.x;
+					obj.dragMouseDiff.y = event.pageY - obj.dragMousePos.y;
+
+					obj.dragMoveFunc.call( obj, event);
+				}
+
+				function eventDragEndFunc( event)
+				{
+					event.stopPropagation();
+
+					$( document).off( 'touchmove mousemove', eventDragMoveEvent);
+					$( document).off( 'touchend mouseup mouseleave', eventDragEndFunc);
+
+					if(( typeof event.originalEvent.touches !== 'undefined') && (event.originalEvent.touches.length > 0)) {
+						event.pageX = event.originalEvent.touches[0].pageX;
+						event.pageY = event.originalEvent.touches[0].pageY;
+					}
+
+					obj.dragEndFunc.call( obj, event);
+				}
+			});
+
+			obj.preloadResources();
 		});
 	},
 	// -------------------------------------------------------------------------
@@ -197,6 +254,31 @@ Globe.prototype = {
 
 		instrument.seat = seat;
 		instrument.moveTo( this.orchestra.seats[ seat].center);
+	},
+	// -------------------------------------------------------------------------
+	dragStartFunc: function( event) {
+//		this.draggingStart = $( this.obj).position();
+
+//		$( this.obj).addClass( 'drag');
+	},
+	// -------------------------------------------------------------------------
+	dragMoveFunc: function( event) {
+		var winWidth = $( window).width();
+		var relX = this.dragMouseDiff.x / winWidth;
+
+		var kids = $( '#carousel').children();
+var width = 210;
+var transZ = Math.round(( width / 2 ) / Math.tan( Math.PI / kids.length));
+		for( var i = 0; i < kids.length; ++i) {
+			var rotY = parseInt(( i + relX) * (360 / kids.length));
+			kids[i].style[ '-webkit-transform'] = 'rotateY(' + rotY + 'deg) translateZ('+transZ+'px)';
+			kids[i].style[ '-moz-transform'] = 'rotateY(' + rotY + 'deg) translateZ('+transZ+'px)';
+			kids[i].style[ 'transform'] = 'rotateY(' + rotY + 'deg) translateZ('+transZ+'px)';
+		}
+	},
+	// -------------------------------------------------------------------------
+	dragEndFunc: function( event) {
+//		$( this.obj).removeClass( 'drag');
 	},
 	// -------------------------------------------------------------------------
 }
