@@ -6,6 +6,7 @@ function Globe() {
 	this.obj = $( '#imgGlobe');
 	this.mode = '';
 	this.canvas = null;
+	this.angle = 0;
 
 	if( 0 == this.obj.length) {
 		this.create();
@@ -85,7 +86,7 @@ Globe.prototype = {
 			$( '#mainContainer').append( str);
 			preload.addCSS( '.container', 'width:'+width+'px;height:140px;position:relative;-webkit-perspective:1000px;-moz-perspective:1000px;perspective:1000px;z-index:1000;');
 			preload.addCSS( '#carousel', 'width:100%;height:100%;position:absolute;transform-style:preserve-3d;');
-			preload.addCSS( '#carousel figure', 'display:block;position:absolute;width:186px;height:116px;left:10px;top:10px;border:2px solid black;background-color:rgba(255,255,255,0.25)');
+			preload.addCSS( '#carousel figure', 'display:block;position:absolute;width:210px;height:140px;left:0;top:0;border:0;background-color:rgba(255,255,255,0.5);-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden;');
 
 			for( var i = 0; i < max; ++i) {
 				var rotY = parseInt( i * (360 / max));
@@ -264,13 +265,13 @@ Globe.prototype = {
 	// -------------------------------------------------------------------------
 	dragMoveFunc: function( event) {
 		var winWidth = $( window).width();
-		var relX = this.dragMouseDiff.x / winWidth;
+		var plusAngle = 360 * this.dragMouseDiff.x / winWidth;
 
 		var kids = $( '#carousel').children();
-var width = 210;
-var transZ = Math.round(( width / 2 ) / Math.tan( Math.PI / kids.length));
+		var width = 210;
+		var transZ = Math.round(( width / 2 ) / Math.tan( Math.PI / kids.length));
 		for( var i = 0; i < kids.length; ++i) {
-			var rotY = parseInt(( i + relX) * (360 / kids.length));
+			var rotY = parseInt( this.angle + plusAngle + i * (360 / kids.length));
 			kids[i].style[ '-webkit-transform'] = 'rotateY(' + rotY + 'deg) translateZ('+transZ+'px)';
 			kids[i].style[ '-moz-transform'] = 'rotateY(' + rotY + 'deg) translateZ('+transZ+'px)';
 			kids[i].style[ 'transform'] = 'rotateY(' + rotY + 'deg) translateZ('+transZ+'px)';
@@ -278,6 +279,18 @@ var transZ = Math.round(( width / 2 ) / Math.tan( Math.PI / kids.length));
 	},
 	// -------------------------------------------------------------------------
 	dragEndFunc: function( event) {
+		var winWidth = $( window).width();
+		var plusAngle = 360 * this.dragMouseDiff.x / winWidth;
+
+		this.angle += plusAngle;
+		if( this.angle >= 360) {
+			this.angle -= 360;
+		}
+		if( this.angle < 0) {
+			this.angle += 360;
+		}
+		console.log( this.angle);
+
 //		$( this.obj).removeClass( 'drag');
 	},
 	// -------------------------------------------------------------------------
