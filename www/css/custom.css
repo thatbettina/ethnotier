@@ -70,7 +70,7 @@ body {
 	background-color:rgba(255,255,255,0.5);
 	width:70px;
 	height:98px;
-	border-radius:10px;
+	border-radius:35px;
 	position:absolute;
 	-webkit-user-select:none;
 	-khtml-user-select:none;
@@ -88,7 +88,8 @@ body {
 
 .instrumentImg {
 	width:70px;
-	height:98px;
+	height:70px;
+	padding-bottom:28px;
 	position:absolute;
 	-webkit-user-select:none;
 	-khtml-user-select:none;

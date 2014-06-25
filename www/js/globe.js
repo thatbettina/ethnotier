@@ -178,7 +178,7 @@ Globe.prototype = {
 	// -------------------------------------------------------------------------
 	showMenuInstrument: function() {
 		for( var i = 0; i < this.cabinet.instruments.length; ++i) {
-			this.slotMenu.push( new Instrument( this.cabinet.instruments[i].name, this.orchestra));
+			this.slotMenu.push( new Instrument( this.cabinet.instruments[i].name, this.cabinet.instruments[i].group, this.orchestra));
 		}
 
 		this.sortMenuInstrument();
