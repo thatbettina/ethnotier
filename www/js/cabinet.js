@@ -19,23 +19,23 @@ Cabinet.prototype = {
 	// -------------------------------------------------------------------------
 	initInstruments: function() {
 		this.instruments = [
-		// source: CC BY-SA http://offene-naturfuehrer.de/web/Open_Source_Tierstimmen
-//		{name:'toad',    src:'http://species-id.net/o/media/7/76/Bufo_calamita_TSA-medium.mp3'},
-//		{name:'swift',   src:'http://species-id.net/o/media/b/ba/Apus_apus_TSA-medium.mp3'},
-//		{name:'deer',    src:'http://species-id.net/o/media/3/33/Dama_dama_TSA-medium.mp3'},
-//		{name:'eagle',   src:'http://species-id.net/o/media/e/e9/Aquila_chrysaetos_TSA-short.mp3'},
-//		{name:'goose',   src:'http://species-id.net/o/media/b/bc/Branta_canadensis_TSA-medium.mp3'},
-//		{name:'mallard', src:'http://species-id.net/o/media/b/b0/Anas_platyrhynchos_TSA-medium.mp3'},
-//		{name:'owl',     src:'http://species-id.net/o/media/6/61/Bubo_bubo_TSA-medium.mp3'},
-//		{name:'wolf',    src:'http://species-id.net/o/media/4/4f/Canis_lupus_TSA-medium.mp3'},
-		{group:'animal', name:'toad',    src:'media/animalBufoCalamita.mp3'},
-		{group:'animal', name:'swift',   src:'media/animalApusApus.mp3'},
-		{group:'animal', name:'deer',    src:'media/animalDamaDama.mp3'},
-		{group:'animal', name:'eagle',   src:'media/animalAquilaChrysaetos.mp3'},
-		{group:'animal', name:'goose',   src:'media/animalBrantaCanadensis.mp3'},
-		{group:'animal', name:'mallard', src:'media/animalAnasPlatyrhynchos.mp3'},
-		{group:'animal', name:'owl',     src:'media/animalBuboBubo.mp3'},
-		{group:'animal', name:'wolf',    src:'media/animalCanisLupus.mp3'},
+
+// group:               animal
+// source:              http://offene-naturfuehrer.de/web/Open_Source_Tierstimmen
+// copyright owner:     Museum für Naturkunde
+// copyright statement: Copyright Tierstimmenarchiv of the Museum für Naturkunde 2013
+// license statement:   Creative Commons: Author Attribution Required, Share-Alike (CC BY-SA 3.0)
+
+		{group:'animal', name:'toad',    src:'media/animalBufoCalamita.mp3'     }, // http://species-id.net/openmedia/File:Bufo_calamita_TSA-medium.mp3      Creators: Conrads
+		{group:'animal', name:'swift',   src:'media/animalApusApus.mp3'         }, // http://species-id.net/openmedia/File:Apus_apus_TSA-medium.mp3          Creators: Tembrock
+		{group:'animal', name:'deer',    src:'media/animalDamaDama.mp3'         }, // http://species-id.net/openmedia/File:Dama_dama_TSA-medium.mp3          Creators: Tembrock
+		{group:'animal', name:'eagle',   src:'media/animalAquilaChrysaetos.mp3' }, // http://species-id.net/openmedia/File:Aquila_chrysaetos_TSA-medium.mp3  Creators: Tembrock
+		{group:'animal', name:'goose',   src:'media/animalBrantaCanadensis.mp3' }, // http://species-id.net/openmedia/File:Branta_canadensis_TSA-medium.mp3  Creators: Frommolt
+		{group:'animal', name:'mallard', src:'media/animalAnasPlatyrhynchos.mp3'}, // http://species-id.net/openmedia/File:Anas_platyrhynchos_TSA-medium.mp3 Creators: Tembrock
+		{group:'animal', name:'owl',     src:'media/animalBuboBubo.mp3'         }, // http://species-id.net/openmedia/File:Bubo_bubo_TSA-medium.mp3          Creators: Tembrock
+		{group:'animal', name:'wolf',    src:'media/animalCanisLupus.mp3'       }, // http://species-id.net/openmedia/File:Canis_lupus_TSA-medium.mp3        Creators: Frommolt
+
+// group:               instruments
 		// source: CC BY https://commons.wikimedia.org/wiki/Category:Audiodateien_des_Ethnologischen_Museums
 		// source: CC BY SA https://www.flickr.com/photos/121003427@N03/
 		// metadata: CC BY https://offenedaten.de/de/dataset/metadaten-vii
