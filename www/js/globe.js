@@ -7,6 +7,7 @@ function Globe() {
 	this.mode = '';
 	this.canvas = null;
 	this.angle = 0;
+	this.globe = { width: 0, height: 0};
 
 	if( 0 == this.obj.length) {
 		this.create();
@@ -61,6 +62,18 @@ Globe.prototype = {
 		}
 	},
 	// -------------------------------------------------------------------------
+	drawGlobe: function( angle) {
+		var kids = $( '#carousel').children();
+		var transZ = Math.round(( this.globe.width / 2 ) / Math.tan( Math.PI / kids.length));
+
+		for( var i = 0; i < kids.length; ++i) {
+			var rotY = parseInt( angle + i * (360 / kids.length));
+			kids[i].style[ '-webkit-transform'] = 'rotateY(' + rotY + 'deg) translateZ(' + transZ + 'px)';
+			kids[i].style[ '-moz-transform'] = 'rotateY(' + rotY + 'deg) translateZ(' + transZ + 'px)';
+			kids[i].style[ 'transform'] = 'rotateY(' + rotY + 'deg) translateZ(' + transZ + 'px)';
+		}
+	},
+	// -------------------------------------------------------------------------
 	preloadGlobe: function() {
 		var obj = this;
 
@@ -73,10 +86,9 @@ Globe.prototype = {
 			obj.obj.removeClass( 'hidden');
 
 			// http://desandro.github.io/3dtransforms/docs/carousel.html
-			var max = 9;
-
-			var width = 210;
-			var transZ = Math.round(( width / 2 ) / Math.tan( Math.PI / max));
+			var max = 10;
+			obj.globe.width = 100;
+			obj.globe.height = 170;
 
 			var str = '<section class="container"><div id="carousel">';
 			for( var i = 0; i < max; ++i) {
@@ -84,14 +96,11 @@ Globe.prototype = {
 			}
 			str += '</div></section>';
 			$( '#mainContainer').append( str);
-			preload.addCSS( '.container', 'width:'+width+'px;height:140px;position:relative;-webkit-perspective:1000px;-moz-perspective:1000px;perspective:1000px;z-index:1000;');
+			preload.addCSS( '.container', 'width:' + obj.globe.width + 'px;height:' + obj.globe.height + 'px;position:relative;-webkit-perspective:1000px;-moz-perspective:1000px;perspective:1000px;z-index:1000;');
 			preload.addCSS( '#carousel', 'width:100%;height:100%;position:absolute;transform-style:preserve-3d;');
-			preload.addCSS( '#carousel figure', 'display:block;position:absolute;width:210px;height:140px;left:0;top:0;border:0;background-color:rgba(255,255,255,0.5);-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden;');
+			preload.addCSS( '#carousel figure', 'display:block;position:absolute;width:' + obj.globe.width + 'px;height:' + obj.globe.height + 'px;left:0;top:0;border:0;background-color:rgba(255,255,255,0.5);-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden;');
 
-			for( var i = 0; i < max; ++i) {
-				var rotY = parseInt( i * (360 / max));
-				preload.addCSS( '#carousel figure:nth-child(' + (i + 1) + ')', '-webkit-transform:rotateY('+rotY+'deg) translateZ('+transZ+'px);-moz-transform:rotateY('+rotY+'deg) translateZ('+transZ+'px);transform:rotateY('+rotY+'deg) translateZ('+transZ+'px);');
-			}
+			obj.drawGlobe( obj.angle);
 
 			obj.obj.removeClass( 'userStatic');
 			obj.obj.on( 'selectstart', function() {
@@ -267,15 +276,7 @@ Globe.prototype = {
 		var winWidth = $( window).width();
 		var plusAngle = 360 * this.dragMouseDiff.x / winWidth;
 
-		var kids = $( '#carousel').children();
-		var width = 210;
-		var transZ = Math.round(( width / 2 ) / Math.tan( Math.PI / kids.length));
-		for( var i = 0; i < kids.length; ++i) {
-			var rotY = parseInt( this.angle + plusAngle + i * (360 / kids.length));
-			kids[i].style[ '-webkit-transform'] = 'rotateY(' + rotY + 'deg) translateZ('+transZ+'px)';
-			kids[i].style[ '-moz-transform'] = 'rotateY(' + rotY + 'deg) translateZ('+transZ+'px)';
-			kids[i].style[ 'transform'] = 'rotateY(' + rotY + 'deg) translateZ('+transZ+'px)';
-		}
+		this.drawGlobe( this.angle + plusAngle);
 	},
 	// -------------------------------------------------------------------------
 	dragEndFunc: function( event) {
