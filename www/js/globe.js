@@ -6,7 +6,7 @@ function Globe() {
 	this.obj = $( '.globe');
 	this.mode = '';
 	this.canvas = null;
-	this.angle = 0;
+	this.angle = 275; // center to Germany
 	this.globe = { width: 0, height: 0};
 
 	if( 0 == this.obj.length) {
@@ -41,13 +41,6 @@ Globe.prototype = {
 				centerY = winHeight / 5;
 				imgWidthHeight = minimum / 3;
 			}
-
-/*			$( '#imgGlobe').css({
-				top: parseInt( centerY - imgWidthHeight / 2) + 'px',
-				left: parseInt( centerX - imgWidthHeight / 2) + 'px',
-				width: parseInt( imgWidthHeight) + 'px',
-				height: parseInt( imgWidthHeight) + 'px',
-			});*/
 
 			var kids = $( '#carousel').children();
 			var slices = kids.length;
@@ -113,17 +106,15 @@ Globe.prototype = {
 		var obj = this;
 
 		var slices = 14;
-		var perspective = 200;
+		var perspective = 100;
 
 		obj.globe.height = 500;
 		obj.globe.width = parseInt( obj.globe.height / slices * Math.PI / 2);
 
 		preload.begin();
 		preload.addCSS( '.globe', 'position:absolute;z-index:50;width:0;height:0;border:0;-webkit-perspective:' + perspective + 'px;-moz-perspective:' + perspective + 'px;perspective:' + perspective + 'px;background-color:#346d9c;overflow:hidden;');
-//		preload.addCSS( '.globe', 'position:absolute;z-index:50;width:0;height:0;border:0;-webkit-perspective:' + perspective + 'px;-moz-perspective:' + perspective + 'px;perspective:' + perspective + 'px;background-color:rgba(255,255,255,0.5);');
 		preload.addCSS( '#imgEarthMap', 'display:none;');
 		preload.addCSS( '#imgEarthOverlay', 'display:none;');
-//		preload.addImage( 'imgGlobe', 'art/earth.svg');
 		preload.addImage( 'imgEarthMap', 'art/earthmap.svg');
 		preload.addImage( 'imgEarthOverlay', 'art/earthoverlay.svg');
 		preload.wait( function() {
@@ -132,11 +123,11 @@ Globe.prototype = {
 			for( var i = 0; i < slices; ++i) {
 				str += '<div></div>';
 			}
-			str += '</div></section>';
+			str += '</div><img src="art/earthoverlay.svg" id="carouseloverlay" class="userStatic"></section>';
 			$( '#mainContainer').append( str);
 			preload.addCSS( '#carousel', 'width:100%;height:100%;position:absolute;transform-style:preserve-3d;');
 			preload.addCSS( '#carousel div', 'display:block;position:absolute;width:' + (obj.globe.width+1) + 'px;height:' + obj.globe.height + 'px;left:0;top:0;border:0;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden;background-image:url("art/earthmap.svg");background-repeat:no-repeat;');
-//			preload.addCSS( '#carousel div', 'display:block;position:absolute;width:' + (obj.globe.width+1) + 'px;height:' + obj.globe.height + 'px;left:0;top:0;border:0;background-color:rgba(255,255,255,0.5);background-repeat:no-repeat;');
+			preload.addCSS( '#carouseloverlay', 'width:100%;height:100%;position:absolute;z-index:52;');
 			obj.drawGlobe( obj.angle);
 
 			obj.obj = $( '.globe');
