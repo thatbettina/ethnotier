@@ -52,8 +52,8 @@ Globe.prototype = {
 			var kids = $( '#carousel').children();
 			var slices = kids.length;
 
-			this.globe.height = imgWidthHeight;
-			this.globe.width = parseInt( this.globe.height / slices * Math.PI / 2);
+			this.globe.height = imgWidthHeight * 1.1;
+			this.globe.width = parseInt( this.globe.height / slices * Math.PI / 2*2);
 
 			$( '.globe').css({
 				top: parseInt( centerY - imgWidthHeight / 2) + 'px',
@@ -65,18 +65,24 @@ Globe.prototype = {
 
 			$( '#carousel').css({
 				transform: 'rotateY(0deg) translateZ(' + (-imgWidthHeight/4) + 'px)',
-				left: '10px',
-				top: '40px',
 			});
 
-			$( '#carousel figure').css({
-				width: (this.globe.width + 1) + 'px',
+			$( '#carousel div').css({
+				width: (this.globe.width + 2) + 'px',
 				height: this.globe.height + 'px',
-				backgroundSize: (this.globe.width * slices) + 'px ' + this.globe.height + 'px',
+				backgroundSize: (this.globe.width/2 * slices) + 'px ' + this.globe.height + 'px',
 			});
+			var posX = 0;
 			for( var i = 0; i < slices; ++i) {
-				kids[i].style[ 'backgroundPosition'] = '-' + (i * this.globe.width) + 'px 0px';
+				if( i < (slices / 2)) {
+					posX = (i * this.globe.width);
+				} else {
+					posX = ((i - slices / 2) * this.globe.width);
+				}
+				kids[i].style[ 'backgroundPosition'] = '-' + posX + 'px 0px';
 			}
+
+			this.drawGlobe( this.angle);
 
 			if( this.canvas != null) {
 				this.canvas.onResize();
@@ -98,25 +104,23 @@ Globe.prototype = {
 			kids[i].style[ '-webkit-transform'] = 'rotateY(' + rotY + 'deg) translateZ(' + transZ + 'px)';
 			kids[i].style[ '-moz-transform'] = 'rotateY(' + rotY + 'deg) translateZ(' + transZ + 'px)';
 			kids[i].style[ 'transform'] = 'rotateY(' + rotY + 'deg) translateZ(' + transZ + 'px)';
-//			kids[i].style[ 'top'] = parseInt( this.globe.height * -0.14) + 'px';
-//			kids[i].style[ 'left'] = parseInt( this.globe.width / 2) + 'px';
+			kids[i].style[ 'top'] = (($( '#carousel').height() - this.globe.height) / 2) + 'px';
+			kids[i].style[ 'left'] = (($( '#carousel').width() - this.globe.width) / 2) + 'px';
 		}
 	},
 	// -------------------------------------------------------------------------
 	preloadGlobe: function() {
 		var obj = this;
 
-		var slices = 15;
-		var perspective = 600;
-		var imgWidth = 600;
-		var imgHeight = 360;
+		var slices = 14;
+		var perspective = 200;
 
 		obj.globe.height = 500;
 		obj.globe.width = parseInt( obj.globe.height / slices * Math.PI / 2);
 
 		preload.begin();
-//		preload.addCSS( '.globe', 'position:absolute;z-index:50;width:0;height:0;border:0;-webkit-perspective:' + perspective + 'px;-moz-perspective:' + perspective + 'px;perspective:' + perspective + 'px;overflow:hidden;');
-		preload.addCSS( '.globe', 'position:absolute;z-index:50;width:0;height:0;border:0;-webkit-perspective:' + perspective + 'px;-moz-perspective:' + perspective + 'px;perspective:' + perspective + 'px;background-color:rgba(255,255,255,0.5);');
+		preload.addCSS( '.globe', 'position:absolute;z-index:50;width:0;height:0;border:0;-webkit-perspective:' + perspective + 'px;-moz-perspective:' + perspective + 'px;perspective:' + perspective + 'px;background-color:#346d9c;overflow:hidden;');
+//		preload.addCSS( '.globe', 'position:absolute;z-index:50;width:0;height:0;border:0;-webkit-perspective:' + perspective + 'px;-moz-perspective:' + perspective + 'px;perspective:' + perspective + 'px;background-color:rgba(255,255,255,0.5);');
 		preload.addCSS( '#imgEarthMap', 'display:none;');
 		preload.addCSS( '#imgEarthOverlay', 'display:none;');
 //		preload.addImage( 'imgGlobe', 'art/earth.svg');
@@ -126,13 +130,13 @@ Globe.prototype = {
 			// http://desandro.github.io/3dtransforms/docs/carousel.html
 			var str = '<section class="globe hidden"><div id="carousel">';
 			for( var i = 0; i < slices; ++i) {
-				str += '<figure></figure>';
+				str += '<div></div>';
 			}
 			str += '</div></section>';
 			$( '#mainContainer').append( str);
 			preload.addCSS( '#carousel', 'width:100%;height:100%;position:absolute;transform-style:preserve-3d;');
-			preload.addCSS( '#carousel figure', 'display:block;position:absolute;width:' + (obj.globe.width+1) + 'px;height:' + obj.globe.height + 'px;left:0;top:0;border:0;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden;background-image:url("art/earthmap.svg");background-repeat:repeat-x;');
-//			preload.addCSS( '#carousel figure', 'display:block;position:absolute;width:' + (obj.globe.width+1) + 'px;height:' + obj.globe.height + 'px;left:0;top:0;border:0;background-color:rgba(255,255,255,0.5);background-repeat:no-repeat;');
+			preload.addCSS( '#carousel div', 'display:block;position:absolute;width:' + (obj.globe.width+1) + 'px;height:' + obj.globe.height + 'px;left:0;top:0;border:0;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden;background-image:url("art/earthmap.svg");background-repeat:no-repeat;');
+//			preload.addCSS( '#carousel div', 'display:block;position:absolute;width:' + (obj.globe.width+1) + 'px;height:' + obj.globe.height + 'px;left:0;top:0;border:0;background-color:rgba(255,255,255,0.5);background-repeat:no-repeat;');
 			obj.drawGlobe( obj.angle);
 
 			obj.obj = $( '.globe');
@@ -197,7 +201,6 @@ Globe.prototype = {
 	showGlobe: function( mode) {
 		this.mode = mode;
 		this.onResize();
-		this.drawGlobe( this.angle);
 	},
 	// -------------------------------------------------------------------------
 	wakeUp: function() {
