@@ -1,49 +1,31 @@
-ethnotier
+ï»¿EthnoTier
 =========
+
+Das Projekt kombiniert das Tierstimmenarchiv des Museums fÃ¼r Naturkunde Berlin und das Musikinstrumentenarchiv des Ethnologischen Museums Berlin und bereitet diese kindgerecht fÃ¼r das iPad auf. Kinder kÃ¶nnen mit der App Tierstimmen und Musikinstrumente neu entdecken und in einem Orchester remixen.
 
 Teammitglieder
 --------------
 
-Thomas
+Annika Blohm
 
-Annika
-
-Bettina
-
-Daniel
+Thomas Tursics
 
 Zeitplan
 --------
 
-26.04.2014: Start von Coding da Vinci
+26.04.2014: Start von Coding da Vinci (Teamfindung, erste EntwÃ¼rfe)
 
-27.04.2014: Teamfindung, erste Entwürfe
+05.06.2014: PrÃ¤sentation auf dem Berlin Open Data Day (BODDy 14)
 
-02.05.2014: Github aufgesetzt
+06.07.2014: PrÃ¤sentation bei Coding da Vinci
 
-06.05.2014: Erster Prototyp: Drag'n'Drop von bunten Kästchen. Abspielen von Tierstimmen
+Lizenzen
+--------
 
-09.05.2014: Tierstimmenarchiv neu geordnet http://offene-naturfuehrer.de/web/Open_Source_Tierstimmen
+Code: tdb (irgendwas offenes)
 
-13.05.2014: Musikdaten der Musikinstrumente erhalten
+Grafik: tdb (irgendwas offenes)
 
-17.05.2014: Mehrkanal, Lautstärkeanpassung, Endlosschleife der Samples
+Tierstimmen: CC-BY-SA
 
-24.05.2014: Erstellung der BODDy Präsentation
-
-30.05.2014: Einbau der ersten Spielegrafiken
-
-05.06.2014: Präsentation auf dem Berlin Open Data Day (BODDy 14)
-
-...
-
-06.07.2014: Präsentation bei Coding da Vinci
-
-Aktueller Stand
----------------
-
-Zur Zeit ist das Projekt eine HTML-Seite die im Browser angezeigt werden kann. Man kann bunte Kästchen umherziehen und so verschiedene Tierstimmen an- und ausstellen. Im Sound-Vorrat befinden sich zur Zeit 8 Samples die in den Orchesterraum mit 7 Stühlen ziehen kann. Das Drag'n'Drop arbeitet einwandfrei. Die vorderen Stühle spielen den Sound lauter ab als die hinteren Sitze.
-
-Die HTML-Seite funktioniert auf einem iPad einwandfrei. Nur die Lautstärke kann z.Z. nicht verändert werden. Das Ziel bis zur Abschlußpräsentation ist das Umwandeln der HTML-Seite zu einer iPad-App (als Demo).
-
-Die nächsten Schritte sind die Auswahl der Tierstimmen und der Musikinstrumente.
+Musikinstrumente: CC-BY
