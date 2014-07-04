@@ -209,7 +209,8 @@ Globe.prototype = {
 			that.orchestra = new Orchestra( that, function() {
 				that.cabinet = new Cabinet();
 
-				that.slotMenu = [];
+				that.slotMenuEarth = [];
+				that.slotMenuAnimal = [];
 
 				that.wakeUp();
 
@@ -220,15 +221,22 @@ Globe.prototype = {
 	// -------------------------------------------------------------------------
 	showMenuInstrument: function() {
 		for( var i = 0; i < this.cabinet.instruments.length; ++i) {
-			this.slotMenu.push( new Instrument( this.cabinet.instruments[i].name, this.cabinet.instruments[i].group, this.orchestra));
+			if( 'animal' == this.cabinet.instruments[i].group) {
+				this.slotMenuAnimal.push( new Instrument( this.cabinet.instruments[i].name, this.cabinet.instruments[i].group, this.orchestra));
+			} else {
+				this.slotMenuEarth.push( new Instrument( this.cabinet.instruments[i].name, this.cabinet.instruments[i].group, this.orchestra));
+			}
 		}
 
 		this.sortMenuInstrument();
 	},
 	// -------------------------------------------------------------------------
 	sortMenuInstrument: function() {
-		for( var i = 0; i < this.slotMenu.length; ++i) {
-			this.slotMenu[i].moveTo({ x: 80 * i + 50, y: 250});
+		for( var i = 0; i < this.slotMenuEarth.length; ++i) {
+			this.slotMenuEarth[i].moveTo({ x: 80 * i + 50, y: 250});
+		}
+		for( var i = 0; i < this.slotMenuAnimal.length; ++i) {
+			this.slotMenuAnimal[i].moveTo({ x: 80 * i + 50, y: 550});
 		}
 	},
 	// -------------------------------------------------------------------------
@@ -250,32 +258,56 @@ Globe.prototype = {
 		this.orchestra.seats[ instrument.seat].instrument = null;
 		instrument.seat = -1;
 
-		this.slotMenu.push( instrument);
+		if( 'animal' == instrument.group) {
+			this.slotMenuAnimal.push( instrument);
+		} else {
+			this.slotMenuEarth.push( instrument);
+		}
 		this.sortMenuInstrument();
 	},
 	// -------------------------------------------------------------------------
 	moveInstrumentToSeat: function( instrument, seat) {
-		var menuPosition = 0;
-		for( ; menuPosition < this.slotMenu.length; ++menuPosition) {
-			if( this.slotMenu[menuPosition].name == instrument.name) {
+		var menuEarthPos = 0;
+		var menuAnimalPos = 0;
+		for( ; menuEarthPos < this.slotMenuEarth.length; ++menuEarthPos) {
+			if( this.slotMenuEarth[menuEarthPos].name == instrument.name) {
+				break;
+			}
+		}
+		for( ; menuAnimalPos < this.slotMenuAnimal.length; ++menuAnimalPos) {
+			if( this.slotMenuAnimal[menuAnimalPos].name == instrument.name) {
 				break;
 			}
 		}
 		var seatIsTaken = (null != this.orchestra.seats[ seat].instrument);
 		var moveSeatToSeat = (-1 != instrument.seat);
-		var moveMenuToSeat = (menuPosition < this.slotMenu.length);
+		var moveEarthToSeat = (menuEarthPos < this.slotMenuEarth.length);
+		var moveAnimalToSeat = (menuAnimalPos < this.slotMenuAnimal.length);
 
-		if( moveMenuToSeat && moveSeatToSeat) {
+		if( moveEarthToSeat && moveSeatToSeat) {
 			// should be impossible
 			instrument.moveToDragStart();
 			return;
-		} else if( moveMenuToSeat && seatIsTaken) {
+		} else if( moveAnimalToSeat && moveSeatToSeat) {
+			// should be impossible
+			instrument.moveToDragStart();
+			return;
+		} else if( moveEarthToSeat && seatIsTaken) {
 			this.moveInstrumentToGlobe( this.orchestra.seats[ seat].instrument);
-			this.slotMenu.splice( menuPosition, 1);
+			this.slotMenuEarth.splice( menuEarthPos, 1);
 			this.sortMenuInstrument();
 			this.sound.play( instrument.name);
-		} else if( moveMenuToSeat) {
-			this.slotMenu.splice( menuPosition, 1);
+		} else if( moveAnimalToSeat && seatIsTaken) {
+			this.moveInstrumentToGlobe( this.orchestra.seats[ seat].instrument);
+			this.slotMenuAnimal.splice( menuAnimalPos, 1);
+			this.sortMenuInstrument();
+			this.sound.play( instrument.name);
+		} else if( moveEarthToSeat) {
+			this.slotMenuEarth.splice( menuEarthPos, 1);
+			this.sortMenuInstrument();
+			this.sound.play( instrument.name);
+		} else if( moveAnimalToSeat) {
+			this.slotMenuAnimal.splice( menuAnimalPos, 1);
 			this.sortMenuInstrument();
 			this.sound.play( instrument.name);
 		} else if( moveSeatToSeat && seatIsTaken) {
