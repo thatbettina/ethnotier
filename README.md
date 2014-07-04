@@ -22,9 +22,7 @@ Zeitplan
 Lizenzen
 --------
 
-Code: tdb (irgendwas offenes)
-
-Grafik: tdb (irgendwas offenes)
+Code und Grafik: GNU LGPL v3.0
 
 Tierstimmen: CC-BY-SA
 
