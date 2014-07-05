@@ -24,8 +24,10 @@ Preload.prototype = {
 			var callback = this.callback;
 			this.callback = null;
 
-			callback();
-		}
+			setTimeout( function() {
+				callback();
+			}, 100);
+ 		}
 	},
 	// -------------------------------------------------------------------------
 	mediaLoaded: function() {
@@ -54,6 +56,12 @@ Preload.prototype = {
 		} else {
 			$( '<img id="' + id + '" src="' + src + '" />').addClass( 'hidden userStatic').appendTo( parent);
 		}
+	},
+	// -------------------------------------------------------------------------
+	addMedia: function( id, src) {
+		parent = '#mainContainer';
+
+		$( '<audio id="' + id + '" src="' + src + '" preload="auto"></audio>').appendTo( parent).load();
 	},
 	// -------------------------------------------------------------------------
 }

@@ -4,17 +4,18 @@
 
 var gCabinetCount = 0;
 
-function Cabinet() {
+function Cabinet( callback) {
 	if( 0 == gCabinetCount) {
-		this.create();
+		this.create( callback);
 	}
 	++gCabinetCount;
 }
 Cabinet.prototype = {
 	// -------------------------------------------------------------------------
-	create: function() {
+	create: function( callback) {
 		this.initInstruments();
-		this.preloadInstruments();
+
+		this.preloadCabinet( callback);
 	},
 	// -------------------------------------------------------------------------
 	initInstruments: function() {
@@ -119,10 +120,16 @@ III D 4683 -A x.mp3
 		];
 	},
 	// -------------------------------------------------------------------------
-	preloadInstruments: function() {
+	preloadCabinet: function( callback) {
+		preload.begin();
+
 		for( var i = 0; i < this.instruments.length; ++i) {
-			$( '#mainContainer').append( '<audio id="audio' + this.instruments[i].name + '" src="' + this.instruments[i].src + '" preload="auto"></audio>');
+			preload.addMedia( 'audio' + this.instruments[i].name, this.instruments[i].src);
 		}
+
+		preload.wait( function() {
+			callback();
+		});
 	},
 	// -------------------------------------------------------------------------
 }

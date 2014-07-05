@@ -17,9 +17,9 @@ Instrument.prototype = {
 	// -------------------------------------------------------------------------
 	create: function() {
 		if( 'animal' == this.group) {
-			$( '#mainContainer').append( '<img id="instrument' + this.name + '" class="instrumentImg" src="art/animal' + this.name + '.svg">');
+			preload.addImage( 'instrument' + this.name, 'art/animal' + this.name + '.svg');
 		} else {
-			$( '#mainContainer').append( '<div id="instrument' + this.name + '" class="instrument"><img src="art/animalvoid.svg" style="width:70px;height:70px;">' + this.name + '</div>');
+			preload.addImage( 'instrument' + this.name, 'art/animalvoid.svg');
 		}
 		this.obj = $( '#instrument' + this.name);
 

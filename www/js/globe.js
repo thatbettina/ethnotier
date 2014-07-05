@@ -83,6 +83,52 @@ Globe.prototype = {
 			if( this.orchestra != null) {
 				this.orchestra.onResize();
 			}
+
+			this.onResizeInstrument();
+		} catch( e) {
+			console.log( e);
+		}
+	},
+	// -------------------------------------------------------------------------
+	onResizeInstrument: function() {
+		try {
+			if( typeof this.orchestra === 'undefined') {
+				return;
+			}
+			if( this.orchestra.seats.length == 0) {
+				return;
+			}
+
+			var winHeight = $( window).height();
+			var winWidth = $( window).width();
+
+			var size = winWidth / (this.orchestra.seats.length + 1);
+
+			for( var i = 0; i < this.slotMenuEarth.length; ++i) {
+				this.slotMenuEarth[i].obj.css({
+					width: parseInt( size) + 'px',
+					height: parseInt( size) + 'px',
+				});
+			}
+			for( var i = 0; i < this.slotMenuAnimal.length; ++i) {
+				this.slotMenuAnimal[i].obj.css({
+					width: parseInt( size) + 'px',
+					height: parseInt( size) + 'px',
+				});
+			}
+
+			this.sortMenuInstrument();
+
+			for( var seat = 0; seat < this.orchestra.seats.length; ++seat) {
+				var instrument = this.orchestra.seats[ seat].instrument;
+				if( null != instrument) {
+					instrument.obj.css({
+						width: parseInt( size) + 'px',
+						height: parseInt( size) + 'px',
+					});
+					instrument.moveTo( this.orchestra.seats[ seat].center);
+				}
+			}
 		} catch( e) {
 			console.log( e);
 		}
@@ -196,6 +242,8 @@ Globe.prototype = {
 	// -------------------------------------------------------------------------
 	wakeUp: function() {
 		this.showGlobe( 'basis');
+		this.wakeUpInstrument();
+
 		this.canvas.wakeUp();
 		this.orchestra.wakeUp();
 	},
@@ -207,19 +255,23 @@ Globe.prototype = {
 			that.sound = new Sound;
 
 			that.orchestra = new Orchestra( that, function() {
-				that.cabinet = new Cabinet();
-
-				that.slotMenuEarth = [];
-				that.slotMenuAnimal = [];
-
-				that.wakeUp();
-
-				that.showMenuInstrument();
+				that.cabinet = new Cabinet( function() {
+					that.preloadInstrument( function() {
+						that.wakeUp();
+					});
+				});
 			});
 		});
 	},
 	// -------------------------------------------------------------------------
-	showMenuInstrument: function() {
+	preloadInstrument: function( callback) {
+		preload.begin();
+
+		this.slotMenuEarth = [];
+		this.slotMenuAnimal = [];
+
+		preload.addCSS( '.instrumentImg', 'position:absolute;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:51;');
+
 		for( var i = 0; i < this.cabinet.instruments.length; ++i) {
 			if( 'animal' == this.cabinet.instruments[i].group) {
 				this.slotMenuAnimal.push( new Instrument( this.cabinet.instruments[i].name, this.cabinet.instruments[i].group, this.orchestra));
@@ -228,15 +280,33 @@ Globe.prototype = {
 			}
 		}
 
+		preload.wait( function() {
+			callback();
+		});
+	},
+	// -------------------------------------------------------------------------
+	wakeUpInstrument: function() {
+		for( var i = 0; i < this.slotMenuEarth.length; ++i) {
+			this.slotMenuEarth[i].obj.removeClass( 'hidden userStatic').addClass( 'instrumentImg');
+		}
+		for( var i = 0; i < this.slotMenuAnimal.length; ++i) {
+			this.slotMenuAnimal[i].obj.removeClass( 'hidden userStatic').addClass( 'instrumentImg');
+		}
+
 		this.sortMenuInstrument();
 	},
 	// -------------------------------------------------------------------------
 	sortMenuInstrument: function() {
+		var winHeight = $( window).height();
+		var winWidth = $( window).width();
+
+		var size = winWidth / (this.orchestra.seats.length + 1);
+
 		for( var i = 0; i < this.slotMenuEarth.length; ++i) {
-			this.slotMenuEarth[i].moveTo({ x: 80 * i + 50, y: 250});
+			this.slotMenuEarth[i].moveTo({ x: parseInt( size * (i * 1.15 + 1)), y: 250});
 		}
 		for( var i = 0; i < this.slotMenuAnimal.length; ++i) {
-			this.slotMenuAnimal[i].moveTo({ x: 80 * i + 50, y: 550});
+			this.slotMenuAnimal[i].moveTo({ x: parseInt( size * (i * 1.15 + 1)), y: 550});
 		}
 	},
 	// -------------------------------------------------------------------------
