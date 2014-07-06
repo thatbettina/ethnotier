@@ -28,13 +28,13 @@ Cabinet.prototype = {
 // license statement:   Creative Commons: Author Attribution Required, Share-Alike (CC BY-SA 3.0)
 
 		{group:'animal', name:'toad',    src:'media/animalBufoCalamita.mp3'     }, // http://species-id.net/openmedia/File:Bufo_calamita_TSA-medium.mp3      Creators: Conrads
+		{group:'animal', name:'wolf',    src:'media/animalCanisLupus.mp3'       }, // http://species-id.net/openmedia/File:Canis_lupus_TSA-medium.mp3        Creators: Frommolt
+		{group:'animal', name:'mallard', src:'media/animalAnasPlatyrhynchos.mp3'}, // http://species-id.net/openmedia/File:Anas_platyrhynchos_TSA-medium.mp3 Creators: Tembrock
 		{group:'animal', name:'swift',   src:'media/animalApusApus.mp3'         }, // http://species-id.net/openmedia/File:Apus_apus_TSA-medium.mp3          Creators: Tembrock
-		{group:'animal', name:'deer',    src:'media/animalDamaDama.mp3'         }, // http://species-id.net/openmedia/File:Dama_dama_TSA-medium.mp3          Creators: Tembrock
 		{group:'animal', name:'eagle',   src:'media/animalAquilaChrysaetos.mp3' }, // http://species-id.net/openmedia/File:Aquila_chrysaetos_TSA-medium.mp3  Creators: Tembrock
 		{group:'animal', name:'goose',   src:'media/animalBrantaCanadensis.mp3' }, // http://species-id.net/openmedia/File:Branta_canadensis_TSA-medium.mp3  Creators: Frommolt
-		{group:'animal', name:'mallard', src:'media/animalAnasPlatyrhynchos.mp3'}, // http://species-id.net/openmedia/File:Anas_platyrhynchos_TSA-medium.mp3 Creators: Tembrock
+		{group:'animal', name:'deer',    src:'media/animalDamaDama.mp3'         }, // http://species-id.net/openmedia/File:Dama_dama_TSA-medium.mp3          Creators: Tembrock
 		{group:'animal', name:'owl',     src:'media/animalBuboBubo.mp3'         }, // http://species-id.net/openmedia/File:Bubo_bubo_TSA-medium.mp3          Creators: Tembrock
-		{group:'animal', name:'wolf',    src:'media/animalCanisLupus.mp3'       }, // http://species-id.net/openmedia/File:Canis_lupus_TSA-medium.mp3        Creators: Frommolt
 
 // group:               instruments
 		// source: CC BY https://commons.wikimedia.org/wiki/Category:Audiodateien_des_Ethnologischen_Museums
