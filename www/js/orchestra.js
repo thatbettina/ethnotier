@@ -33,9 +33,18 @@ Orchestra.prototype = {
 			var size = winWidth / (11 + 1);
 
 			for( var seat = 0; seat < this.seats.length; ++seat) {
+				var x = 0;
+				var y = 0;
+				if( seat < 5) {
+					x = ((winWidth - size * 5.5 * 1.2) / 2) + size * (seat + 0.5) * 1.2;
+					y = winHeight - size * 3.4;
+				} else {
+					x = ((winWidth - size * 6.5 * 1.2) / 2) + size * (seat - 5 + 0.5) * 1.2;
+					y = winHeight - size * 2.4;
+				}
 				$( '#imgSeat' + seat).css({
-					top: parseInt( winHeight - size * 1.25) + 'px',
-					left: parseInt( size * (seat + .5)) + 'px',
+					top: parseInt( y) + 'px',
+					left: parseInt( x) + 'px',
 					width: parseInt( size) + 'px',
 					height: parseInt( size) + 'px',
 				});
@@ -51,7 +60,7 @@ Orchestra.prototype = {
 	preloadCanvas: function( callback) {
 		preload.begin();
 
-		for( var seat = 0; seat < 12; ++seat) {
+		for( var seat = 0; seat < 11; ++seat) {
 			preload.addCSS( '#imgSeat' + seat, 'position:absolute;z-index:10;width:0;height:0;');
 			preload.addCSS( '#imgSeat' + seat + '.over', 'background-color:rgba(255,255,255,0.5);');
 			preload.addImage( 'imgSeat' + seat, 'art/seat' + (1+Math.floor(Math.random()*3)) + '.svg');
