@@ -305,7 +305,7 @@ Globe.prototype = {
 		var size = winWidth / (11 + 1);
 
 		for( var i = 0; i < this.slotMenuEarth.length; ++i) {
-			this.slotMenuEarth[i].moveTo({ x: parseInt( size * (i * 1.15 + 1)), y: 250});
+			this.slotMenuEarth[i].moveTo({ x: parseInt(((winWidth - this.slotMenuEarth.length * size * 1.15 - size * 0.15) / 2) + size * (i * 1.15 + 1)), y: winHeight / 2.5});
 		}
 		for( var i = 0; i < this.slotMenuAnimal.length; ++i) {
 			this.slotMenuAnimal[i].moveTo({ x: parseInt(((winWidth - this.slotMenuAnimal.length * size * 1.15 - size * 0.15) / 2) + size * (i * 1.15 + 1)), y: winHeight - size * 0.6});

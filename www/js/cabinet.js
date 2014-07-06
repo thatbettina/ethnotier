@@ -54,34 +54,35 @@ Cabinet.prototype = {
 //		{name:'I_C_38635',   src:'https://upload.wikimedia.org/wikipedia/commons/d/da/I_C_38635_b_x.ogg'},
 //		{name:'III_C_30616', src:'https://upload.wikimedia.org/wikipedia/commons/3/3c/III_C_30616_x.ogg'},
 //		{name:'VII_c_823',   src:'https://upload.wikimedia.org/wikipedia/commons/3/33/VII_c_823_-B_x.ogg'},
-		{group:'', name:'I_C_1479',    src:'media/instrumentI1479.mp3'},
-		{group:'', name:'I_C_38635',   src:'media/instrumentI38635.mp3'},
-		{group:'', name:'III_C_30616', src:'media/instrumentIII30616.mp3'},
-		{group:'', name:'VII_c_823',   src:'media/instrumentVII823.mp3'},
+//		{group:'', name:'I_C_1479',    src:'media/instrumentI1479.mp3'},
+//		{group:'', name:'I_C_38635',   src:'media/instrumentI38635.mp3'},
+//		{group:'', name:'III_C_30616', src:'media/instrumentIII30616.mp3'},
+//		{group:'', name:'VII_c_823',   src:'media/instrumentVII823.mp3'},
 
 /* good sounds
 Asia
 I C 4652 a+b x.mp3
 I C 7743 x.mp3
-I C 30284 a x.mp3
-VII 173 e x.mp3
-VII c 202 x.mp3
-VII c 345 a+b x.mp3
+.I C 30284 a x.mp3
+VII 173 e x.mp3*/
+		{group:'', name:'VII_c_202_x',   src:'media/instrumentVIIc202x.mp3'},
+/*VII c 345 a+b x.mp3
 VII c 396 x.mp3
 VII c 423 a x.mp3
-VII c 632 x.mp3
-VII c 762 x.mp3
-VII c 794 a+b x.mp3
-VII c 799 x.mp3
-VII c 823 -A x.mp3
-VII c 852 -F x.mp3
-VII c 852 -K x.mp3
-VII c 852 -LL x.mp3
+*/
+		{group:'', name:'VII_c_632_x',   src:'media/instrumentVIIc632x.mp3'},
+		{group:'', name:'VII_c_762_x',   src:'media/instrumentVIIc762x.mp3'},
+		{group:'', name:'VII_c_794_ab_x',   src:'media/instrumentVIIc794abx.mp3'},
+		{group:'', name:'VII_c_799_x',   src:'media/instrumentVIIc799x.mp3'},
+//VII c 823 -A x.mp3
+		{group:'', name:'VII_c_852_-F_x',   src:'media/instrumentVIIc852-Fx.mp3'},
+/*VII c 852 -K x.mp3
+.VII c 852 -LL x.mp3
 VII c 853 -D x.mp3
 
-Europe
-VII a 14 x.mp3
-VII a 26 x.mp3
+Europe*/
+		{group:'', name:'VII_a_14_x',   src:'media/instrumentVIIa14x.mp3'},
+/*VII a 26 x.mp3
 VII a 70 x.mp3
 VII b 4 x.mp3
 VII b 8 x.mp3
