@@ -37,16 +37,16 @@ Orchestra.prototype = {
 				var y = 0;
 				if( seat < 5) {
 					x = ((winWidth - size * 5.5 * 1.2) / 2) + size * (seat + 0.5) * 1.2;
-					y = winHeight - size * 3.4;
+					y = winHeight - size * 3.3;
 				} else {
 					x = ((winWidth - size * 6.5 * 1.2) / 2) + size * (seat - 5 + 0.5) * 1.2;
-					y = winHeight - size * 2.4;
+					y = winHeight - size * 2.3;
 				}
 				$( '#imgSeat' + seat).css({
 					top: parseInt( y) + 'px',
 					left: parseInt( x) + 'px',
 					width: parseInt( size) + 'px',
-					height: parseInt( size) + 'px',
+					height: parseInt( size * 120 / 150) + 'px',
 				});
 
 				var pos = $( this.seats[ seat].obj).position();
@@ -62,7 +62,7 @@ Orchestra.prototype = {
 
 		for( var seat = 0; seat < 11; ++seat) {
 			preload.addCSS( '#imgSeat' + seat, 'position:absolute;z-index:10;width:0;height:0;');
-			preload.addCSS( '#imgSeat' + seat + '.over', 'background-color:rgba(255,255,255,0.5);');
+//			preload.addCSS( '#imgSeat' + seat + '.over', 'background-color:rgba(255,255,255,0.5);');
 			preload.addImage( 'imgSeat' + seat, 'art/seat' + (1+Math.floor(Math.random()*3)) + '.svg');
 
 			this.seats[ seat] = {
