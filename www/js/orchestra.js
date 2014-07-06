@@ -29,7 +29,8 @@ Orchestra.prototype = {
 			var winHeight = $( window).height();
 			var winWidth = $( window).width();
 
-			var size = winWidth / (this.seats.length + 1);
+//			var size = winWidth / (this.seats.length + 1);
+			var size = winWidth / (11 + 1);
 
 			for( var seat = 0; seat < this.seats.length; ++seat) {
 				$( '#imgSeat' + seat).css({

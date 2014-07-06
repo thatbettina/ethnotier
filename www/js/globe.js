@@ -38,8 +38,8 @@ Globe.prototype = {
 				imgWidthHeight = minimum / 2;
 			} else if( 'basis' == this.mode) {
 				centerX = winWidth / 2;
-				centerY = winHeight / 5;
-				imgWidthHeight = minimum / 3;
+				centerY = winHeight / 4.5;
+				imgWidthHeight = minimum / 4.5;
 			}
 
 			var kids = $( '#carousel').children();
@@ -102,7 +102,8 @@ Globe.prototype = {
 			var winHeight = $( window).height();
 			var winWidth = $( window).width();
 
-			var size = winWidth / (this.orchestra.seats.length + 1);
+//			var size = winWidth / (this.orchestra.seats.length + 1);
+			var size = winWidth / (11 + 1);
 
 			for( var i = 0; i < this.slotMenuEarth.length; ++i) {
 				this.slotMenuEarth[i].obj.css({
@@ -300,13 +301,14 @@ Globe.prototype = {
 		var winHeight = $( window).height();
 		var winWidth = $( window).width();
 
-		var size = winWidth / (this.orchestra.seats.length + 1);
+//		var size = winWidth / (this.orchestra.seats.length + 1);
+		var size = winWidth / (11 + 1);
 
 		for( var i = 0; i < this.slotMenuEarth.length; ++i) {
 			this.slotMenuEarth[i].moveTo({ x: parseInt( size * (i * 1.15 + 1)), y: 250});
 		}
 		for( var i = 0; i < this.slotMenuAnimal.length; ++i) {
-			this.slotMenuAnimal[i].moveTo({ x: parseInt( size * (i * 1.15 + 1)), y: 550});
+			this.slotMenuAnimal[i].moveTo({ x: parseInt(((winWidth - this.slotMenuAnimal.length * size * 1.15 - size * 0.15) / 2) + size * (i * 1.15 + 1)), y: winHeight - size * 0.6});
 		}
 	},
 	// -------------------------------------------------------------------------
